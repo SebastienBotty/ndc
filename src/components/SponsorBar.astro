@@ -1,29 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
+
 const sponsors = await getCollection('sponsors');
-const boucle = [...sponsors, ...sponsors];
+const serie = [...sponsors, ...sponsors, ...sponsors, ...sponsors];
 ---
-<section class="overflow-hidden border-y border-brun/10 bg-creme py-8" aria-label="Nos sponsors">
-  <p class="mb-4 text-center text-sm font-semibold uppercase tracking-wide text-brun/60">Ils soutiennent le club</p>
-  <div class="sponsor-track flex w-max gap-8 px-6">
-    {boucle.map((s) => (
-      <span class="flex h-16 items-center rounded-lg border border-brun/10 bg-white px-5 text-sm font-semibold text-brun/70">
-        {s.data.nom}
-      </span>
-    ))}
+<section class="border-y border-brun/15 py-14" aria-label="Nos partenaires">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <p class="eyebrow text-brun/70">Ils soutiennent le club</p>
+  </div>
+  <div class="marquee mt-8">
+    <ul class="marquee-track">
+      {serie.map((s, i) => (
+        <li class="display flex items-center whitespace-nowrap px-8 text-3xl text-brun/40" aria-hidden={i >= sponsors.length ? 'true' : undefined}>
+          <em>{s.data.nom}</em>
+          <span class="ml-16 text-base text-or" aria-hidden="true">✦</span>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
-
-<style>
-  .sponsor-track {
-    animation: scroll 30s linear infinite;
-  }
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-</style>

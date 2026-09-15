@@ -1,0 +1,41 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+const ordreJours = ['lundi', 'jeudi', 'vendredi'];
+const horaires = (await getCollection('horaires')).sort(
+  (a, b) => ordreJours.indexOf(a.id) - ordreJours.indexOf(b.id)
+);
+const jours = await Promise.all(
+  horaires.map(async (jour) => ({ jour, lieu: await getEntry(jour.data.lieu) }))
+);
+---
+<section class="border-t border-brun/15 bg-creme">
+  <div class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="eyebrow text-bordeaux">La semaine</p>
+        <h2 class="display display-lg mt-5">Trois <em class="text-bordeaux">soirs</em> pour danser.</h2>
+      </div>
+      <a href="/cours" class="link-underline pb-0.5 font-semibold">Planning détaillé →</a>
+    </div>
+
+    <div class="mt-16 grid gap-14 md:grid-cols-3 md:gap-8">
+      {jours.map(({ jour, lieu }) => (
+        <article class="reveal">
+          <h3 class="display outline-text text-[clamp(3.5rem,8vw,6.5rem)] leading-none text-bordeaux">{jour.data.jour}</h3>
+          <p class="eyebrow mt-4 text-brun/70">
+            {lieu?.data.nom}{jour.data.label ? ` · ${jour.data.label}` : ''}
+          </p>
+          <ul class="mt-6 divide-y divide-brun/10 border-y border-brun/10">
+            {jour.data.creneaux.map((c) => (
+              <li class="flex items-baseline gap-5 py-3">
+                <span class="display tabular w-16 shrink-0 text-xl">{c.heure}</span>
+                <span class="text-brun/85">{c.cours}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+
+const danses = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.data.ordre);
+---
+<section class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <div>
+      <p class="eyebrow text-bordeaux">Nos danses</p>
+      <h2 class="display display-lg mt-5">Quatre <em class="text-bordeaux">familles</em>,<br />à votre rythme.</h2>
+    </div>
+    <a href="/cours#danses" class="link-underline pb-0.5 font-semibold">Toutes les danses →</a>
+  </div>
+
+  <div class="mt-14 lg:grid lg:grid-cols-12 lg:gap-12" data-dance-index>
+    <ul class="border-t border-brun/15 lg:col-span-8">
+      {danses.map((danse) => (
+        <li class="reveal border-b border-brun/15">
+          <a
+            href={`/cours#${danse.data.slug}`}
+            data-preview={danse.data.slug}
+            class="group grid grid-cols-[auto_1fr_auto] items-center gap-5 py-6 sm:py-8"
+          >
+            <img
+              src={`/images/${danse.data.image}-sm.webp`}
+              alt=""
+              width="800"
+              height="1000"
+              loading="lazy"
+              class="h-16 w-16 rounded-full object-cover sm:h-20 sm:w-20 lg:hidden"
+            />
+            <span class="transition-transform duration-500 group-hover:translate-x-3 group-focus-visible:translate-x-3">
+              <span class="display display-md block transition-colors group-hover:text-bordeaux">{danse.data.titre}</span>
+              <span class="mt-2 block text-sm text-brun/70">{danse.data.danses.map((d) => d.nom).join(' · ')}</span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="flex h-12 w-12 -rotate-45 items-center justify-center rounded-full border border-brun/25 text-xl transition duration-500 group-hover:rotate-0 group-hover:border-bordeaux group-hover:bg-bordeaux group-hover:text-creme"
+            >
+              →
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="hidden lg:col-span-4 lg:block">
+      <div class="arch sticky top-28 aspect-[3/4] bg-brun/10">
+        {danses.map((danse, i) => (
+          <img
+            src={`/images/${danse.data.image}-sm.webp`}
+            alt=""
+            width="800"
+            height="1000"
+            loading="lazy"
+            data-preview-image={danse.data.slug}
+            class={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-dance-index]').forEach((index) => {
+    const images = index.querySelectorAll<HTMLElement>('[data-preview-image]');
+    const afficher = (slug: string) => {
+      images.forEach((image) => {
+        const actif = image.dataset.previewImage === slug;
+        image.classList.toggle('opacity-100', actif);
+        image.classList.toggle('opacity-0', !actif);
+      });
+    };
+    index.querySelectorAll<HTMLElement>('[data-preview]').forEach((lien) => {
+      const slug = lien.dataset.preview ?? '';
+      lien.addEventListener('mouseenter', () => afficher(slug));
+      lien.addEventListener('focus', () => afficher(slug));
+    });
+  });
+</script>

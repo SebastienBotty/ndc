@@ -54,7 +54,7 @@ body::before {
 }
 
 .display-xl {
-  font-size: clamp(3.4rem, 11vw, 10.5rem);
+  font-size: clamp(3.6rem, 13vw, 10.5rem);
 }
 
 .display-lg {
@@ -92,12 +92,13 @@ body::before {
 
 .outline-text {
   color: transparent;
-  -webkit-text-stroke: 1.5px currentColor;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: var(--outline-color, var(--color-bordeaux));
 }
 
 @supports not (-webkit-text-stroke: 1px black) {
   .outline-text {
-    color: currentColor;
+    color: var(--outline-color, var(--color-bordeaux));
     opacity: 0.35;
   }
 }
@@ -219,10 +220,10 @@ body::before {
 
 @keyframes parallax-shift {
   from {
-    transform: translateY(-7%) scale(1.15);
+    transform: translateY(-5%) scale(1.25);
   }
   to {
-    transform: translateY(7%) scale(1.15);
+    transform: translateY(5%) scale(1.25);
   }
 }
 
@@ -238,7 +239,7 @@ body::before {
     .reveal {
       animation: reveal-in linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 28%;
+      animation-range: entry 5% entry 85%;
     }
 
     .parallax {

@@ -1,0 +1,43 @@
+---
+const emplacement = 'flex flex-col items-center justify-center gap-3 rounded-[1.75rem] border-2 border-dashed border-bordeaux/30 bg-bordeaux/[0.03] p-6 text-center text-bordeaux';
+---
+<section class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+  <div class="grid gap-8 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <p class="eyebrow text-bordeaux">La vie du club</p>
+      <h2 class="display display-lg mt-5">Bien plus que <em class="text-bordeaux">des cours.</em></h2>
+    </div>
+    <p class="self-end text-lg leading-relaxed text-brun/80 lg:col-span-5 lg:col-start-8">
+      Soirées dansantes, stages, stand au marché de Hannut : le club, c'est aussi une bande qui aime se retrouver.
+    </p>
+  </div>
+
+  <div class="mt-16 grid auto-rows-[9rem] grid-cols-2 gap-4 sm:auto-rows-[11rem] md:grid-cols-12 md:gap-5">
+    <figure class="reveal col-span-2 row-span-3 overflow-hidden rounded-[1.75rem] bg-brun/10 md:col-span-5">
+      <img src="/images/rouge-lg.webp" alt="Une danseuse en rouge, voilages en mouvement" width="1600" height="2154" loading="lazy" class="h-full w-full object-cover" />
+    </figure>
+
+    <div class={`reveal col-span-1 row-span-2 md:col-span-4 ${emplacement}`}>
+      <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M4 8h3l2-3h6l2 3h3v11H4z" stroke-linejoin="round" />
+        <circle cx="12" cy="13" r="3.5" />
+      </svg>
+      <p class="display text-xl"><em>Photo du club ici</em></p>
+      <p class="text-xs text-brun/60">Soirée dansante</p>
+    </div>
+
+    <figure class="reveal col-span-1 row-span-2 overflow-hidden rounded-full bg-brun/10 md:col-span-3">
+      <img src="/images/lumieres-sm.webp" alt="Piste de danse sous des guirlandes lumineuses" width="800" height="1200" loading="lazy" class="h-full w-full object-cover" />
+    </figure>
+
+    <div class={`reveal col-span-1 md:col-span-3 ${emplacement}`}>
+      <p class="display text-lg"><em>Photo du club ici</em></p>
+      <p class="text-xs text-brun/60">Stage</p>
+    </div>
+
+    <div class={`reveal col-span-1 md:col-span-4 ${emplacement}`}>
+      <p class="display text-lg"><em>Photo du club ici</em></p>
+      <p class="text-xs text-brun/60">Marché de Hannut</p>
+    </div>
+  </div>
+</section>

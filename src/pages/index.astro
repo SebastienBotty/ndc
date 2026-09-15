@@ -1,21 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import StatsBar from '../components/StatsBar.astro';
-import DanceCard from '../components/DanceCard.astro';
-import WeekPreviewCard from '../components/WeekPreviewCard.astro';
-import NextEvent from '../components/NextEvent.astro';
-import Quote from '../components/Quote.astro';
+import HeroHome from '../components/home/HeroHome.astro';
+import Marquee from '../components/Marquee.astro';
+import DanceIndex from '../components/home/DanceIndex.astro';
+import WeekOutline from '../components/home/WeekOutline.astro';
+import ClubLife from '../components/home/ClubLife.astro';
+import NextEventBig from '../components/home/NextEventBig.astro';
+import QuoteDuotone from '../components/home/QuoteDuotone.astro';
 import SponsorBar from '../components/SponsorBar.astro';
 import { getCollection } from 'astro:content';
 import { getNextEvent } from '../lib/evenements';
-
-const danses = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.data.ordre);
-
-const ordreJours = ['lundi', 'jeudi', 'vendredi'];
-const horaires = (await getCollection('horaires')).sort(
-  (a, b) => ordreJours.indexOf(a.id) - ordreJours.indexOf(b.id)
-);
 
 const evenements = await getCollection('evenements');
 const prochainEvenement = getNextEvent(evenements.map((e) => ({ id: e.id, ...e.data })));
@@ -23,32 +17,17 @@ const prochainEvenement = getNextEvent(evenements.map((e) => ({ id: e.id, ...e.d
 <Base
   title="New Dance Club — Cours de danse à Hannut et Jandrain"
   description="Cours de danse pour tous niveaux à Hannut et Jandrain : rock, salsa, bachata, danses de salon et danses latines."
+  preloadImage="/images/tango-couple-lg.webp"
 >
-  <Hero
-    titre="On danse ensemble, à Hannut et Jandrain"
-    sousTitre="Rock, salsa, bachata, danses de salon et danses latines : un club convivial pour tous les niveaux, débutants compris."
+  <HeroHome />
+  <Marquee
+    items={['Rock', 'Salsa', 'Bachata', 'Tango', 'Valse', 'Cha-cha', 'Rumba', 'Line dance']}
+    label="Danses enseignées : rock, salsa, bachata, tango, valse, cha-cha, rumba, line dance"
   />
-  <StatsBar />
-  <section class="mx-auto max-w-5xl px-6 py-12">
-    <h2 class="font-display text-2xl font-semibold text-brun">Nos danses</h2>
-    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {danses.map((danse) => <DanceCard danse={danse} />)}
-    </div>
-  </section>
-  <section class="mx-auto max-w-5xl px-6 py-12">
-    <h2 class="font-display text-2xl font-semibold text-brun">La semaine en un coup d'œil</h2>
-    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
-      {horaires.map((jour) => <WeekPreviewCard jour={jour} />)}
-    </div>
-  </section>
-  {prochainEvenement && (
-    <NextEvent
-      titre={prochainEvenement.titre}
-      date={prochainEvenement.date}
-      lieu={prochainEvenement.lieu}
-      description={prochainEvenement.description}
-    />
-  )}
-  <Quote />
+  <DanceIndex />
+  <WeekOutline />
+  <ClubLife />
+  {prochainEvenement && <NextEventBig evenement={prochainEvenement} />}
+  <QuoteDuotone />
   <SponsorBar />
 </Base>

@@ -1,0 +1,33 @@
+---
+import type { Evenement } from '../../lib/evenements';
+
+export interface Props {
+  evenement: Evenement;
+}
+const { evenement } = Astro.props;
+const jour = new Intl.DateTimeFormat('fr-BE', { day: 'numeric' }).format(evenement.date);
+const mois = new Intl.DateTimeFormat('fr-BE', { month: 'short' }).format(evenement.date);
+const annee = evenement.date.getFullYear();
+---
+<section class="bg-nuit text-creme">
+  <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-24 sm:px-8 lg:grid-cols-12 lg:py-28">
+    <div class="lg:col-span-6">
+      <p class="eyebrow text-or">Prochain rendez-vous</p>
+      <p class="display mt-6 flex items-baseline gap-4 text-or">
+        <span class="text-[clamp(6rem,18vw,14rem)] leading-[0.8]">{jour}</span>
+        <span class="display-md"><em>{mois}</em><br /><span class="text-creme/50">{annee}</span></span>
+      </p>
+    </div>
+    <div class="reveal lg:col-span-5 lg:col-start-8">
+      {evenement.exemple && (
+        <span class="mb-4 inline-block rounded-full border border-creme/30 px-3 py-1 text-xs uppercase tracking-widest text-creme/70">
+          Exemple
+        </span>
+      )}
+      <h2 class="display display-md">{evenement.titre}</h2>
+      <p class="mt-3 text-creme/60">{evenement.lieu}</p>
+      <p class="mt-6 leading-relaxed text-creme/85">{evenement.description}</p>
+      <a href="/cours#calendrier" class="link-underline mt-8 inline-block pb-0.5 font-semibold text-or">Tout le calendrier →</a>
+    </div>
+  </div>
+</section>
