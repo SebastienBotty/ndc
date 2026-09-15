@@ -1,14 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { getCollection } from 'astro:content';
-import { osmEmbedUrl } from '../lib/carte';
-
-const ordreRoles = ['cours', 'entrainement'];
-const lieux = (await getCollection('lieux')).sort(
-  (a, b) => ordreRoles.indexOf(a.data.role) - ordreRoles.indexOf(b.data.role)
-);
-const libelleRole = { cours: 'Cours', entrainement: 'Entraînement' } as const;
+import LieuxMap from '../components/LieuxMap.astro';
 ---
 <Base
   title="Contact — New Dance Club"
@@ -44,24 +37,8 @@ const libelleRole = { cours: 'Cours', entrainement: 'Entraînement' } as const;
     <div class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-28">
       <p class="eyebrow text-or">Où nous trouver</p>
       <h2 class="display display-lg mt-5">Deux <em class="text-or">salles.</em></h2>
-      <div class="mt-14 grid gap-12 md:grid-cols-2 md:gap-10">
-        {lieux.map((lieu) => (
-          <article class="reveal">
-            <div class="flex items-baseline justify-between gap-4 border-b border-creme/15 pb-5">
-              <h3 class="display display-md">{lieu.data.nom}</h3>
-              <span class="eyebrow text-or">{libelleRole[lieu.data.role]}</span>
-            </div>
-            <p class="mt-4 text-creme/75">{lieu.data.adresse}</p>
-            <div class="mt-6 overflow-hidden rounded-t-[10rem] rounded-b-2xl bg-creme/5">
-              <iframe
-                title={`Carte — ${libelleRole[lieu.data.role]} à ${lieu.data.nom}`}
-                class="h-80 w-full grayscale-[35%] sepia-[15%]"
-                src={osmEmbedUrl(lieu.data.lat, lieu.data.lon)}
-                loading="lazy"
-              ></iframe>
-            </div>
-          </article>
-        ))}
+      <div class="mt-14">
+        <LieuxMap />
       </div>
     </div>
   </section>
