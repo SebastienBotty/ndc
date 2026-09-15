@@ -1,0 +1,43 @@
+---
+const liens = [
+  { href: '/', label: 'Accueil' },
+  { href: '/cours', label: 'Nos cours' },
+  { href: '/contact', label: 'Contact' },
+];
+const currentPath = Astro.url.pathname;
+---
+<header class="sticky top-0 z-40 border-b border-brun/10 bg-creme/95 backdrop-blur">
+  <div class="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="font-display text-xl font-semibold text-bordeaux">New Dance Club</a>
+
+    <nav class="hidden items-center gap-6 sm:flex">
+      {liens.map((lien) => (
+        <a
+          href={lien.href}
+          class={`text-sm font-semibold ${currentPath === lien.href ? 'text-bordeaux' : 'text-brun/70 hover:text-bordeaux'}`}
+        >
+          {lien.label}
+        </a>
+      ))}
+      <a href="/contact" class="rounded-full bg-bordeaux px-5 py-2 text-sm font-semibold text-creme hover:bg-bordeaux/90">
+        Venir essayer
+      </a>
+    </nav>
+
+    <details class="sm:hidden">
+      <summary class="cursor-pointer list-none rounded-lg border border-brun/20 px-3 py-2 text-sm font-semibold text-brun">
+        Menu
+      </summary>
+      <nav class="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-brun/10 bg-creme px-6 py-4 shadow-md">
+        {liens.map((lien) => (
+          <a href={lien.href} class="py-2 text-sm font-semibold text-brun/80 hover:text-bordeaux">
+            {lien.label}
+          </a>
+        ))}
+        <a href="/contact" class="mt-2 rounded-full bg-bordeaux px-5 py-2 text-center text-sm font-semibold text-creme">
+          Venir essayer
+        </a>
+      </nav>
+    </details>
+  </div>
+</header>

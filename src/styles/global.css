@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/figtree/400.css";
+@import "@fontsource/figtree/600.css";
+
+@theme {
+  --color-bordeaux: #7A1F2B;
+  --color-or: #D9A441;
+  --color-creme: #FBF5EC;
+  --color-brun: #2A1A14;
+  --font-display: "Fraunces", ui-serif, serif;
+  --font-body: "Figtree", ui-sans-serif, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
