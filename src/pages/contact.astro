@@ -2,6 +2,23 @@
 import Base from '../layouts/Base.astro';
 import ContactCard from '../components/ContactCard.astro';
 import ContactForm from '../components/ContactForm.astro';
+
+const lieux = [
+  {
+    label: 'Cours',
+    lieu: 'Hannut',
+    adresse: 'Av. Paul Brien 4, 4280 Hannut',
+    marker: '50.6710,5.0712',
+    bbox: '5.0612,50.6610,5.0812,50.6810',
+  },
+  {
+    label: 'Entraînement',
+    lieu: 'Jandrain',
+    adresse: 'Rue des Tanneurs 4, 1350 Jandrain',
+    marker: '50.6836,4.9989',
+    bbox: '4.9889,50.6786,5.0089,50.6886',
+  },
+];
 ---
 <Base
   title="Contact — New Dance Club"
@@ -24,13 +41,22 @@ import ContactForm from '../components/ContactForm.astro';
   </section>
 
   <section class="mx-auto max-w-4xl px-6 pb-12">
-    <iframe
-      title="Localisation du New Dance Club à Jandrain"
-      class="h-80 w-full rounded-2xl border border-brun/10"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=4.9889%2C50.6786%2C5.0089%2C50.6886&layer=mapnik&marker=50.6836%2C4.9989"
-      loading="lazy"
-    ></iframe>
-    <p class="mt-2 text-sm text-brun/60">Rue des Tanneurs 4, 1350 Jandrain (coordonnées approximatives, à confirmer).</p>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {lieux.map((l) => (
+        <div>
+          <p class="mb-2 font-display font-semibold text-brun">
+            <span class="text-bordeaux">{l.label}</span> — {l.lieu}
+          </p>
+          <iframe
+            title={`Localisation — ${l.label} à ${l.lieu}`}
+            class="h-64 w-full rounded-2xl border border-brun/10"
+            src={`https://www.openstreetmap.org/export/embed.html?bbox=${l.bbox}&layer=mapnik&marker=${l.marker}`}
+            loading="lazy"
+          ></iframe>
+          <p class="mt-2 text-sm text-brun/60">{l.adresse}</p>
+        </div>
+      ))}
+    </div>
   </section>
 
   <section class="mx-auto max-w-2xl px-6 pb-16">

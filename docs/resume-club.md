@@ -26,7 +26,6 @@ facilement plus tard, sans toucher au code.
 
 ## Informations à confirmer avec le club
 
-- Adresse exacte de la salle de Hannut.
 - Tarifs des cours.
 - Photos et vidéos actuelles : les albums du site actuel ne contiennent pas
   de photo de danse exploitable pour la page d'accueil (essentiellement des
