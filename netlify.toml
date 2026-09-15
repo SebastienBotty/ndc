@@ -8,3 +8,5 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Maquette de démonstration : ne pas indexer. À retirer lors de la mise en ligne officielle.
+    X-Robots-Tag = "noindex, nofollow"

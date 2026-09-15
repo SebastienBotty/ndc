@@ -1,2 +1,3 @@
+# Maquette de démonstration : ne pas indexer. À remplacer par "Allow: /" lors de la mise en ligne officielle.
 User-agent: *
-Allow: /
+Disallow: /
