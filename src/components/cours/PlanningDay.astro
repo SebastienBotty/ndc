@@ -14,7 +14,7 @@ const { jour: nomJour, label, creneaux } = jour.data;
 
   {lieu && (
     <div class="mt-4">
-      <div class="flex items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
         <p class="eyebrow text-bordeaux">{lieu.data.nom}</p>
         {label && (
           <span class="-rotate-6 rounded-md border-2 border-or px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-bordeaux">

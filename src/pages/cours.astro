@@ -26,8 +26,8 @@ const evenements = (await getCollection('evenements')).sort(
   description="Horaires, danses enseignées et calendrier du New Dance Club à Hannut et Jandrain."
   preloadImage="/images/solo-lg.webp"
 >
-  <section class="mx-auto grid max-w-7xl items-end gap-12 px-5 pb-20 pt-8 sm:px-8 lg:grid-cols-12 lg:pb-28 lg:pt-16">
-    <div class="lg:col-span-7">
+  <section class="mx-auto grid max-w-7xl items-end gap-12 px-5 pb-20 pt-8 sm:px-8 md:grid-cols-12 md:items-center lg:pb-28 lg:pt-16">
+    <div class="md:col-span-7">
       <p class="eyebrow text-bordeaux">Hannut · Jandrain</p>
       <h1 class="display display-xl mt-6">Nos <em class="text-bordeaux">cours.</em></h1>
       <p class="mt-8 max-w-md text-lg leading-relaxed text-brun/80">
@@ -39,8 +39,8 @@ const evenements = (await getCollection('evenements')).sort(
         <a href="#calendrier" class="link-underline pb-0.5">Le calendrier</a>
       </nav>
     </div>
-    <div class="lg:col-span-4 lg:col-start-9">
-      <div class="arch mx-auto aspect-[3/4] w-3/4 max-w-sm bg-brun/10 lg:w-full">
+    <div class="md:col-span-5 lg:col-span-4 lg:col-start-9">
+      <div class="arch mx-auto aspect-[3/4] w-3/4 max-w-sm bg-brun/10 md:w-full">
         <img
           src="/images/solo-lg.webp"
           srcset="/images/solo-sm.webp 800w, /images/solo-lg.webp 1600w"
@@ -59,7 +59,7 @@ const evenements = (await getCollection('evenements')).sort(
     <div class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-28">
       <p class="eyebrow text-bordeaux">Le planning</p>
       <h2 class="display display-lg mt-5">Choisissez <em class="text-bordeaux">votre</em> soirée.</h2>
-      <div class="mt-16 grid gap-16 md:grid-cols-3 md:gap-10">
+      <div class="mt-16 grid gap-16 md:grid-cols-2 md:gap-x-10 lg:grid-cols-3">
         {jours.map(({ jour, lieu }) => <PlanningDay jour={jour} lieu={lieu} />)}
       </div>
     </div>

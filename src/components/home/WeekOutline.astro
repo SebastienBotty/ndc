@@ -20,7 +20,7 @@ const jours = await Promise.all(
       <a href="/cours" class="link-underline pb-0.5 font-semibold">Planning détaillé →</a>
     </div>
 
-    <div class="mt-16 grid gap-14 md:grid-cols-3 md:gap-8">
+    <div class="mt-16 grid gap-14 md:grid-cols-2 md:gap-x-10 lg:grid-cols-3 lg:gap-8">
       {jours.map(({ jour, lieu }) => (
         <article class="reveal">
           <h3 class="display outline-text text-[clamp(3.5rem,8vw,6.5rem)] leading-none text-bordeaux">{jour.data.jour}</h3>
