@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  jour: CollectionEntry<'horaires'>;
+}
+const { jour } = Astro.props;
+const { jour: nomJour, lieu, label, creneaux } = jour.data;
+---
+<div class="rounded-2xl border border-brun/10 bg-creme p-6">
+  <p class="font-display text-lg font-semibold text-bordeaux">
+    {nomJour}{label ? ` — ${label}` : ''}
+  </p>
+  <p class="text-sm text-brun/70">{lieu}</p>
+  <ul class="mt-4 space-y-1 text-sm text-brun">
+    {creneaux.map((c) => (
+      <li>{c.heure} — {c.cours}</li>
+    ))}
+  </ul>
+</div>

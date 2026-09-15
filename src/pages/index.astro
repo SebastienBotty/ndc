@@ -3,9 +3,22 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import StatsBar from '../components/StatsBar.astro';
 import DanceCard from '../components/DanceCard.astro';
+import WeekPreviewCard from '../components/WeekPreviewCard.astro';
+import NextEvent from '../components/NextEvent.astro';
+import Quote from '../components/Quote.astro';
+import SponsorBar from '../components/SponsorBar.astro';
 import { getCollection } from 'astro:content';
+import { getNextEvent } from '../lib/evenements';
 
 const danses = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.data.ordre);
+
+const ordreJours = ['lundi', 'jeudi', 'vendredi'];
+const horaires = (await getCollection('horaires')).sort(
+  (a, b) => ordreJours.indexOf(a.id) - ordreJours.indexOf(b.id)
+);
+
+const evenements = await getCollection('evenements');
+const prochainEvenement = getNextEvent(evenements.map((e) => ({ id: e.id, ...e.data })));
 ---
 <Base
   title="New Dance Club — Cours de danse à Hannut et Jandrain"
@@ -22,4 +35,20 @@ const danses = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.d
       {danses.map((danse) => <DanceCard danse={danse} />)}
     </div>
   </section>
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-display text-2xl font-semibold text-brun">La semaine en un coup d'œil</h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {horaires.map((jour) => <WeekPreviewCard jour={jour} />)}
+    </div>
+  </section>
+  {prochainEvenement && (
+    <NextEvent
+      titre={prochainEvenement.titre}
+      date={prochainEvenement.date}
+      lieu={prochainEvenement.lieu}
+      description={prochainEvenement.description}
+    />
+  )}
+  <Quote />
+  <SponsorBar />
 </Base>

@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+const sponsors = await getCollection('sponsors');
+const boucle = [...sponsors, ...sponsors];
+---
+<section class="overflow-hidden border-y border-brun/10 bg-creme py-8" aria-label="Nos sponsors">
+  <p class="mb-4 text-center text-sm font-semibold uppercase tracking-wide text-brun/60">Ils soutiennent le club</p>
+  <div class="sponsor-track flex w-max gap-8 px-6">
+    {boucle.map((s) => (
+      <span class="flex h-16 items-center rounded-lg border border-brun/10 bg-white px-5 text-sm font-semibold text-brun/70">
+        {s.data.nom}
+      </span>
+    ))}
+  </div>
+</section>
+
+<style>
+  .sponsor-track {
+    animation: scroll 30s linear infinite;
+  }
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
