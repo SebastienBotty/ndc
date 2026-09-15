@@ -8,10 +8,10 @@ const LABELS: Record<Niveau, string> = {
 };
 
 const CLASSES: Record<Niveau, string> = {
-  debutant: 'bg-or/20 text-bordeaux',
-  intermediaire: 'bg-bordeaux/10 text-bordeaux',
-  avance: 'bg-bordeaux text-creme',
-  tous: 'bg-brun/10 text-brun',
+  debutant: 'bg-or',
+  intermediaire: 'bg-bordeaux/50',
+  avance: 'bg-bordeaux',
+  tous: 'bg-brun/30',
 };
 
 export function labelNiveau(niveau: Niveau): string {

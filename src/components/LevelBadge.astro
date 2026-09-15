@@ -7,6 +7,7 @@ export interface Props {
 }
 const { niveau } = Astro.props;
 ---
-<span class={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${classeNiveau(niveau)}`}>
+<span class="inline-flex items-center gap-2 whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-brun/70">
+  <span class={`h-2 w-2 rounded-full ${classeNiveau(niveau)}`} aria-hidden="true"></span>
   {labelNiveau(niveau)}
 </span>

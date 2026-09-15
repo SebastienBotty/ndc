@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  evenement: CollectionEntry<'evenements'>;
+  passe: boolean;
+}
+const { evenement, passe } = Astro.props;
+const { date, titre, lieu, description, exemple } = evenement.data;
+const jour = new Intl.DateTimeFormat('fr-BE', { day: 'numeric' }).format(date);
+const mois = new Intl.DateTimeFormat('fr-BE', { month: 'long', year: 'numeric' }).format(date);
+---
+<li class={`reveal grid gap-4 border-b border-brun/15 py-8 sm:grid-cols-[10rem_1fr] sm:gap-10 ${passe ? 'opacity-45' : ''}`}>
+  <p class="display text-bordeaux">
+    <span class="block text-7xl leading-none">{jour}</span>
+    <span class="mt-1 block text-lg"><em>{mois}</em></span>
+  </p>
+  <div>
+    <div class="flex flex-wrap items-center gap-3">
+      <h3 class="display display-md">{titre}</h3>
+      {exemple && (
+        <span class="rounded-full border border-brun/30 px-3 py-1 text-xs uppercase tracking-widest text-brun/60">exemple</span>
+      )}
+      {passe && (
+        <span class="rounded-full bg-brun/10 px-3 py-1 text-xs uppercase tracking-widest text-brun/60">passé</span>
+      )}
+    </div>
+    <p class="eyebrow mt-3 text-brun/60">{lieu}</p>
+    <p class="mt-4 max-w-2xl leading-relaxed text-brun/80">{description}</p>
+  </div>
+</li>
