@@ -9,7 +9,7 @@ export interface Props {
 const { jour, lieu } = Astro.props;
 const { jour: nomJour, label, creneaux } = jour.data;
 ---
-<article class="reveal">
+<article class="reveal md:last:odd:col-span-2 md:last:odd:w-[calc(50%-1.25rem)] md:last:odd:justify-self-center lg:last:odd:col-span-1 lg:last:odd:w-auto lg:last:odd:justify-self-stretch">
   <h3 class="display outline-text text-[clamp(3.5rem,7vw,6rem)] leading-none">{nomJour}</h3>
 
   {lieu && (

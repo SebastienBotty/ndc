@@ -22,7 +22,7 @@ const jours = await Promise.all(
 
     <div class="mt-16 grid gap-14 md:grid-cols-2 md:gap-x-10 lg:grid-cols-3 lg:gap-8">
       {jours.map(({ jour, lieu }) => (
-        <article class="reveal">
+        <article class="reveal md:last:odd:col-span-2 md:last:odd:w-[calc(50%-1.25rem)] md:last:odd:justify-self-center lg:last:odd:col-span-1 lg:last:odd:w-auto lg:last:odd:justify-self-stretch">
           <h3 class="display outline-text text-[clamp(3.5rem,8vw,6.5rem)] leading-none text-bordeaux">{jour.data.jour}</h3>
           <p class="eyebrow mt-4 text-brun/70">
             {lieu?.data.nom}{jour.data.label ? ` · ${jour.data.label}` : ''}
