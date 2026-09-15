@@ -43,6 +43,10 @@
   const form = document.getElementById('contact-form');
   const confirmation = document.getElementById('contact-confirmation');
 
+  if (!(form instanceof HTMLFormElement) || !confirmation) {
+    throw new Error('Contact form elements not found');
+  }
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     form.reset();
