@@ -24,13 +24,22 @@ facilement plus tard, sans toucher au code.
   exemple Cloudinary pour les photos, YouTube/Facebook pour les vidéos) pour
   ne pas alourdir le site.
 
+## À propos des photos
+
+- Les photos de la maquette sont des **photos libres de droits (Unsplash)**,
+  utilisées à titre provisoire pour montrer le rendu. Elles ne représentent
+  pas les membres du club et doivent être remplacées avant la mise en ligne.
+- La page d'accueil contient trois emplacements marqués « Photo du club ici »
+  (soirée dansante, stage, marché de Hannut) : ce sont les places réservées
+  aux vraies photos du club.
+- Les albums du site actuel contiennent surtout des photos de soirées et de
+  buffets, peu adaptées à une page d'accueil. Proposition : organiser une
+  courte séance photo pendant un cours (mouvement, pieds, mains, ambiance de
+  salle) pour disposer d'une dizaine d'images de qualité.
+
 ## Informations à confirmer avec le club
 
 - Tarifs des cours.
-- Photos et vidéos actuelles : les albums du site actuel ne contiennent pas
-  de photo de danse exploitable pour la page d'accueil (essentiellement des
-  photos de soirées et de buffets). Il faudra soit de nouvelles photos, soit
-  garder le style graphique actuel de la maquette (dégradés et motifs).
 - Noms et logos des sponsors à afficher.
 - Dates réelles du calendrier (le calendrier de la maquette contient des
   exemples clairement marqués comme tels).

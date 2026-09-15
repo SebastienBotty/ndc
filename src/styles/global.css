@@ -290,4 +290,9 @@ html.js-reveal .header-scroll.is-scrolled {
   .marquee-track {
     animation: none;
   }
+
+  .header-scroll {
+    background-color: rgb(251 245 236 / 0.94);
+    box-shadow: 0 1px 0 rgb(42 26 20 / 0.08);
+  }
 }
