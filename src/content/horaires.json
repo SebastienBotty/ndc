@@ -4,10 +4,10 @@
     "jour": "Lundi",
     "lieu": "hannut",
     "creneaux": [
-      { "heure": "18h15", "cours": "Danses solo — Intermédiaires", "niveau": "intermediaire" },
-      { "heure": "19h15", "cours": "Danses solo — Avancés", "niveau": "avance" },
-      { "heure": "20h15", "cours": "Rock, Salsa, Bachata — Débutants", "niveau": "debutant" },
-      { "heure": "21h15", "cours": "Rock, Salsa, Bachata — Avancés", "niveau": "avance" }
+      { "heure": "18h15", "cours": "Danses solo", "niveau": "intermediaire" },
+      { "heure": "19h15", "cours": "Danses solo", "niveau": "avance" },
+      { "heure": "20h15", "cours": "Rock, Salsa, Bachata", "niveau": "debutant" },
+      { "heure": "21h15", "cours": "Rock, Salsa, Bachata", "niveau": "avance" }
     ]
   },
   {
@@ -15,10 +15,10 @@
     "jour": "Jeudi",
     "lieu": "hannut",
     "creneaux": [
-      { "heure": "18h15", "cours": "Danses solo — Débutants", "niveau": "debutant" },
-      { "heure": "19h15", "cours": "Danses de salon — Débutants", "niveau": "debutant" },
-      { "heure": "20h15", "cours": "Danses de salon — Intermédiaires", "niveau": "intermediaire" },
-      { "heure": "21h15", "cours": "Danses de salon — Avancés", "niveau": "avance" }
+      { "heure": "18h15", "cours": "Danses solo", "niveau": "debutant" },
+      { "heure": "19h15", "cours": "Danses de salon", "niveau": "debutant" },
+      { "heure": "20h15", "cours": "Danses de salon", "niveau": "intermediaire" },
+      { "heure": "21h15", "cours": "Danses de salon", "niveau": "avance" }
     ]
   },
   {
