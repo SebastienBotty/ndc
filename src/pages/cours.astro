@@ -1,6 +1,91 @@
 ---
 import Base from '../layouts/Base.astro';
+import DayPlanning from '../components/DayPlanning.astro';
+import { getCollection, render } from 'astro:content';
+
+const ordreJours = ['lundi', 'jeudi', 'vendredi'];
+const horaires = (await getCollection('horaires')).sort(
+  (a, b) => ordreJours.indexOf(a.id) - ordreJours.indexOf(b.id)
+);
+
+const dansesTriees = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.data.ordre);
+const danses = await Promise.all(
+  dansesTriees.map(async (danse) => {
+    const { Content } = await render(danse);
+    return { danse, Content };
+  })
+);
+
+const evenements = (await getCollection('evenements')).sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
+);
+const dateFormatter = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<Base title="Nos cours — New Dance Club" description="Horaires et danses du New Dance Club.">
-  <h1 class="mx-auto max-w-4xl px-6 py-16 font-display text-3xl text-brun">Nos cours</h1>
+<Base
+  title="Nos cours — New Dance Club"
+  description="Horaires, danses enseignées et calendrier du New Dance Club à Hannut et Jandrain."
+>
+  <section class="mx-auto max-w-4xl px-6 py-16 text-center">
+    <h1 class="font-display text-4xl font-semibold text-brun">Nos cours</h1>
+    <p class="mt-4 text-brun/80">Trois soirs par semaine, à Hannut et à Jandrain. Tarifs : contactez-nous.</p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 pb-16">
+    <h2 class="font-display text-2xl font-semibold text-brun">Le planning</h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {horaires.map((jour) => <DayPlanning jour={jour} />)}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 pb-16">
+    <h2 class="font-display text-2xl font-semibold text-brun">Nos danses</h2>
+    <div class="mt-6 space-y-12">
+      {danses.map(({ danse, Content }) => (
+        <div id={danse.data.slug} class="scroll-mt-24">
+          <span class="inline-flex rounded-full bg-bordeaux/10 px-3 py-1 text-sm font-semibold text-bordeaux">
+            {danse.data.titre}
+          </span>
+          <div class="mt-3 text-brun/90">
+            <Content />
+          </div>
+          <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {danse.data.danses.map((d) => (
+              <div class="rounded-xl border border-brun/10 bg-creme p-4">
+                <dt class="font-display font-semibold text-bordeaux">{d.nom}</dt>
+                <dd class="mt-1 text-sm text-brun/80">{d.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 pb-16">
+    <h2 class="font-display text-2xl font-semibold text-brun">Calendrier</h2>
+    <ul class="mt-6 space-y-4">
+      {evenements.map((e) => (
+        <li class="flex flex-wrap items-baseline justify-between gap-2 border-b border-brun/10 pb-3">
+          <div>
+            <p class="font-semibold text-brun">
+              {e.data.titre}{e.data.exemple ? ' (exemple)' : ''}
+            </p>
+            <p class="text-sm text-brun/70">{e.data.lieu}</p>
+          </div>
+          <p class="text-sm font-semibold text-bordeaux">{dateFormatter.format(e.data.date)}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="bg-bordeaux px-6 py-16 text-center text-creme">
+    <h2 class="font-display text-2xl font-semibold">Envie d'essayer ?</h2>
+    <p class="mt-2 text-creme/90">Premier cours, on vous accueille.</p>
+    <a
+      href="/contact"
+      class="mt-6 inline-flex rounded-full bg-or px-6 py-3 font-semibold text-bordeaux transition hover:bg-creme"
+    >
+      Nous contacter
+    </a>
+  </section>
 </Base>

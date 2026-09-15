@@ -10,7 +10,7 @@
   {
     "id": "exemple-stage-1",
     "date": "2026-11-14",
-    "titre": "Stage danses latines (exemple)",
+    "titre": "Stage danses latines",
     "lieu": "Salle de Jandrain",
     "description": "Exemple de mise en page — date et contenu à confirmer avec le club.",
     "exemple": true
@@ -18,7 +18,7 @@
   {
     "id": "exemple-soiree-1",
     "date": "2026-12-12",
-    "titre": "Soirée de fin d'année (exemple)",
+    "titre": "Soirée de fin d'année",
     "lieu": "À confirmer",
     "description": "Exemple de mise en page — date et contenu à confirmer avec le club.",
     "exemple": true
