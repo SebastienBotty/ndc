@@ -1,9 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import DanceCard from '../components/DanceCard.astro';
+import { getCollection } from 'astro:content';
+
+const danses = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.data.ordre);
 ---
 <Base
   title="New Dance Club — Cours de danse à Hannut et Jandrain"
-  description="Cours de danse pour tous niveaux à Hannut et Jandrain."
+  description="Cours de danse pour tous niveaux à Hannut et Jandrain : rock, salsa, bachata, danses de salon et danses latines."
 >
-  <h1 class="mx-auto max-w-4xl px-6 py-16 font-display text-3xl text-brun">Accueil</h1>
+  <Hero
+    titre="On danse ensemble, à Hannut et Jandrain"
+    sousTitre="Rock, salsa, bachata, danses de salon et danses latines : un club convivial pour tous les niveaux, débutants compris."
+  />
+  <StatsBar />
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-display text-2xl font-semibold text-brun">Nos danses</h2>
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {danses.map((danse) => <DanceCard danse={danse} />)}
+    </div>
+  </section>
 </Base>

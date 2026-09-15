@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  danse: CollectionEntry<'danses'>;
+}
+const { danse } = Astro.props;
+const { titre, slug, couleur, danses } = danse.data;
+const accent = couleur === 'or' ? 'bg-or/15 text-bordeaux' : 'bg-bordeaux/10 text-bordeaux';
+---
+<a
+  href={`/cours#${slug}`}
+  class="group flex flex-col gap-3 rounded-2xl border border-brun/10 bg-creme p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+>
+  <span class={`inline-flex w-fit rounded-full px-3 py-1 text-sm font-semibold ${accent}`}>{titre}</span>
+  <span class="font-display text-lg text-brun">{danses.map((d) => d.nom).join(' · ')}</span>
+  <span class="text-sm font-semibold text-bordeaux group-hover:underline">Découvrir →</span>
+</a>
