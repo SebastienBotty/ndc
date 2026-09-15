@@ -1,0 +1,51 @@
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="grid grid-cols-1 gap-4 sm:grid-cols-2"
+  id="contact-form"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>Ne pas remplir : <input name="bot-field" /></label>
+  </p>
+
+  <div>
+    <label for="prenom" class="block text-sm font-semibold text-brun">Prénom</label>
+    <input id="prenom" name="prenom" type="text" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2" />
+  </div>
+  <div>
+    <label for="nom" class="block text-sm font-semibold text-brun">Nom</label>
+    <input id="nom" name="nom" type="text" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2" />
+  </div>
+  <div class="sm:col-span-2">
+    <label for="email" class="block text-sm font-semibold text-brun">Email</label>
+    <input id="email" name="email" type="email" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2" />
+  </div>
+  <div class="sm:col-span-2">
+    <label for="message" class="block text-sm font-semibold text-brun">Message</label>
+    <textarea id="message" name="message" rows="4" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2"></textarea>
+  </div>
+
+  <div class="sm:col-span-2">
+    <button type="submit" class="rounded-full bg-bordeaux px-6 py-3 font-semibold text-creme transition hover:bg-bordeaux/90">
+      Envoyer
+    </button>
+  </div>
+
+  <p id="contact-confirmation" class="hidden text-sm font-semibold text-bordeaux sm:col-span-2" role="status">
+    Merci, votre message a bien été pris en compte. (Maquette : aucun message n'est réellement envoyé.)
+  </p>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const confirmation = document.getElementById('contact-confirmation');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    form.reset();
+    confirmation.classList.remove('hidden');
+  });
+</script>

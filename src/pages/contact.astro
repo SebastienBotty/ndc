@@ -1,6 +1,42 @@
 ---
 import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
-<Base title="Contact — New Dance Club" description="Contactez le New Dance Club à Jandrain.">
-  <h1 class="mx-auto max-w-4xl px-6 py-16 font-display text-3xl text-brun">Contact</h1>
+<Base
+  title="Contact — New Dance Club"
+  description="Contactez le New Dance Club à Jandrain (Hannut) : téléphone, email, Facebook ou formulaire en ligne."
+>
+  <section class="mx-auto max-w-4xl px-6 py-16 text-center">
+    <h1 class="font-display text-4xl font-semibold text-brun">Contact</h1>
+    <p class="mt-4 text-brun/80">Une question ? Envie d'essayer un cours ? On vous répond avec plaisir.</p>
+  </section>
+
+  <section class="mx-auto grid max-w-4xl grid-cols-1 gap-4 px-6 pb-12 sm:grid-cols-3">
+    <ContactCard icone="telephone" titre="Téléphone" valeur="0495/32.66.47" href="tel:+32495326647" />
+    <ContactCard icone="email" titre="Email" valeur="ndc1350@gmail.com" href="mailto:ndc1350@gmail.com" />
+    <ContactCard
+      icone="facebook"
+      titre="Facebook"
+      valeur="New Dance Club"
+      href="https://www.facebook.com/profile.php?id=100057211669508"
+    />
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 pb-12">
+    <iframe
+      title="Localisation du New Dance Club à Jandrain"
+      class="h-80 w-full rounded-2xl border border-brun/10"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=4.9889%2C50.6786%2C5.0089%2C50.6886&layer=mapnik&marker=50.6836%2C4.9989"
+      loading="lazy"
+    ></iframe>
+    <p class="mt-2 text-sm text-brun/60">Rue des Tanneurs 4, 1350 Jandrain (coordonnées approximatives, à confirmer).</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-6 pb-16">
+    <h2 class="font-display text-2xl font-semibold text-brun">Écrivez-nous</h2>
+    <div class="mt-6">
+      <ContactForm />
+    </div>
+  </section>
 </Base>
