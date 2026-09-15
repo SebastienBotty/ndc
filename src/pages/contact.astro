@@ -1,67 +1,80 @@
 ---
 import Base from '../layouts/Base.astro';
-import ContactCard from '../components/ContactCard.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
+import { osmEmbedUrl } from '../lib/carte';
 
-const lieux = [
-  {
-    label: 'Cours',
-    lieu: 'Hannut',
-    adresse: 'Av. Paul Brien 4, 4280 Hannut',
-    marker: '50.6710,5.0712',
-    bbox: '5.0612,50.6610,5.0812,50.6810',
-  },
-  {
-    label: 'Entraînement',
-    lieu: 'Jandrain',
-    adresse: 'Rue des Tanneurs 4, 1350 Jandrain',
-    marker: '50.6836,4.9989',
-    bbox: '4.9889,50.6786,5.0089,50.6886',
-  },
-];
+const ordreRoles = ['cours', 'entrainement'];
+const lieux = (await getCollection('lieux')).sort(
+  (a, b) => ordreRoles.indexOf(a.data.role) - ordreRoles.indexOf(b.data.role)
+);
+const libelleRole = { cours: 'Cours', entrainement: 'Entraînement' } as const;
 ---
 <Base
   title="Contact — New Dance Club"
-  description="Contactez le New Dance Club à Jandrain (Hannut) : téléphone, email, Facebook ou formulaire en ligne."
+  description="Contactez le New Dance Club : téléphone, email, Facebook, adresses des salles de Hannut et Jandrain."
 >
-  <section class="mx-auto max-w-4xl px-6 py-16 text-center">
-    <h1 class="font-display text-4xl font-semibold text-brun">Contact</h1>
-    <p class="mt-4 text-brun/80">Une question ? Envie d'essayer un cours ? On vous répond avec plaisir.</p>
-  </section>
+  <section class="mx-auto max-w-7xl px-5 pb-20 pt-8 sm:px-8 lg:pb-28 lg:pt-16">
+    <p class="eyebrow text-bordeaux">Contact</p>
+    <h1 class="display display-xl mt-6">On se <br /><em class="text-bordeaux">rencontre ?</em></h1>
 
-  <section class="mx-auto grid max-w-4xl grid-cols-1 gap-4 px-6 pb-12 sm:grid-cols-3">
-    <ContactCard icone="telephone" titre="Téléphone" valeur="0495/32.66.47" href="tel:+32495326647" />
-    <ContactCard icone="email" titre="Email" valeur="ndc1350@gmail.com" href="mailto:ndc1350@gmail.com" />
-    <ContactCard
-      icone="facebook"
-      titre="Facebook"
-      valeur="New Dance Club"
-      href="https://www.facebook.com/profile.php?id=100057211669508"
-    />
-  </section>
-
-  <section class="mx-auto max-w-4xl px-6 pb-12">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {lieux.map((l) => (
+    <div class="mt-16 grid gap-12 border-t border-brun/15 pt-12 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p class="eyebrow text-brun/60">Par téléphone</p>
+        <a href="tel:+32495326647" class="display tabular mt-4 block text-[clamp(2.6rem,7vw,5.5rem)] leading-none transition-colors hover:text-bordeaux">
+          0495 32 66 47
+        </a>
+      </div>
+      <div class="flex flex-col gap-8 lg:col-span-4 lg:col-start-9">
         <div>
-          <p class="mb-2 font-display font-semibold text-brun">
-            <span class="text-bordeaux">{l.label}</span> — {l.lieu}
-          </p>
-          <iframe
-            title={`Localisation — ${l.label} à ${l.lieu}`}
-            class="h-64 w-full rounded-2xl border border-brun/10"
-            src={`https://www.openstreetmap.org/export/embed.html?bbox=${l.bbox}&layer=mapnik&marker=${l.marker}`}
-            loading="lazy"
-          ></iframe>
-          <p class="mt-2 text-sm text-brun/60">{l.adresse}</p>
+          <p class="eyebrow text-brun/60">Par email</p>
+          <a href="mailto:ndc1350@gmail.com" class="link-underline display mt-3 inline-block pb-1 text-3xl">ndc1350@gmail.com</a>
         </div>
-      ))}
+        <div>
+          <p class="eyebrow text-brun/60">Sur Facebook</p>
+          <a href="https://www.facebook.com/profile.php?id=100057211669508" class="link-underline display mt-3 inline-block pb-1 text-3xl">
+            <em>New Dance Club</em> ↗
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-2xl px-6 pb-16">
-    <h2 class="font-display text-2xl font-semibold text-brun">Écrivez-nous</h2>
-    <div class="mt-6">
+  <section class="bg-nuit text-creme">
+    <div class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-28">
+      <p class="eyebrow text-or">Où nous trouver</p>
+      <h2 class="display display-lg mt-5">Deux <em class="text-or">salles.</em></h2>
+      <div class="mt-14 grid gap-12 md:grid-cols-2 md:gap-10">
+        {lieux.map((lieu) => (
+          <article class="reveal">
+            <div class="flex items-baseline justify-between gap-4 border-b border-creme/15 pb-5">
+              <h3 class="display display-md">{lieu.data.nom}</h3>
+              <span class="eyebrow text-or">{libelleRole[lieu.data.role]}</span>
+            </div>
+            <p class="mt-4 text-creme/75">{lieu.data.adresse}</p>
+            <div class="mt-6 overflow-hidden rounded-t-[10rem] rounded-b-2xl bg-creme/5">
+              <iframe
+                title={`Carte — ${libelleRole[lieu.data.role]} à ${lieu.data.nom}`}
+                class="h-80 w-full grayscale-[35%] sepia-[15%]"
+                src={osmEmbedUrl(lieu.data.lat, lieu.data.lon)}
+                loading="lazy"
+              ></iframe>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-12 lg:py-32">
+    <div class="lg:col-span-4">
+      <p class="eyebrow text-bordeaux">Écrire au club</p>
+      <h2 class="display display-lg mt-5">Un <em class="text-bordeaux">mot ?</em></h2>
+      <p class="mt-6 max-w-sm leading-relaxed text-brun/75">
+        Une question sur les cours, les niveaux ou les inscriptions : le comité vous répond par email.
+      </p>
+    </div>
+    <div class="lg:col-span-7 lg:col-start-6">
       <ContactForm />
     </div>
   </section>

@@ -1,9 +1,15 @@
+---
+const champ =
+  'peer w-full border-0 border-b border-brun/30 bg-transparent px-0 pb-3 pt-7 text-lg text-brun outline-none transition-colors placeholder:text-transparent focus:border-bordeaux focus-visible:outline-none';
+const label =
+  'pointer-events-none absolute left-0 top-7 origin-left text-lg text-brun/60 transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:font-semibold peer-focus:uppercase peer-focus:tracking-[0.2em] peer-focus:text-bordeaux peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.2em]';
+---
 <form
   name="contact"
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
-  class="grid grid-cols-1 gap-4 sm:grid-cols-2"
+  class="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2"
   id="contact-form"
 >
   <input type="hidden" name="form-name" value="contact" />
@@ -11,32 +17,35 @@
     <label>Ne pas remplir : <input name="bot-field" /></label>
   </p>
 
-  <div>
-    <label for="prenom" class="block text-sm font-semibold text-brun">Prénom</label>
-    <input id="prenom" name="prenom" type="text" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2" />
+  <div class="relative">
+    <input id="prenom" name="prenom" type="text" autocomplete="given-name" placeholder="Prénom" required class={champ} />
+    <label for="prenom" class={label}>Prénom</label>
   </div>
-  <div>
-    <label for="nom" class="block text-sm font-semibold text-brun">Nom</label>
-    <input id="nom" name="nom" type="text" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2" />
+  <div class="relative">
+    <input id="nom" name="nom" type="text" autocomplete="family-name" placeholder="Nom" required class={champ} />
+    <label for="nom" class={label}>Nom</label>
   </div>
-  <div class="sm:col-span-2">
-    <label for="email" class="block text-sm font-semibold text-brun">Email</label>
-    <input id="email" name="email" type="email" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2" />
+  <div class="relative sm:col-span-2">
+    <input id="email" name="email" type="email" autocomplete="email" placeholder="Email" required class={champ} />
+    <label for="email" class={label}>Email</label>
   </div>
-  <div class="sm:col-span-2">
-    <label for="message" class="block text-sm font-semibold text-brun">Message</label>
-    <textarea id="message" name="message" rows="4" required class="mt-1 w-full rounded-lg border border-brun/20 bg-white px-3 py-2"></textarea>
+  <div class="relative sm:col-span-2">
+    <textarea id="message" name="message" rows="4" placeholder="Votre message" required class={`${champ} resize-none`}></textarea>
+    <label for="message" class={label}>Votre message</label>
   </div>
 
-  <div class="sm:col-span-2">
-    <button type="submit" class="rounded-full bg-bordeaux px-6 py-3 font-semibold text-creme transition hover:bg-bordeaux/90">
-      Envoyer
+  <div class="flex flex-wrap items-center gap-6 sm:col-span-2">
+    <button
+      type="submit"
+      class="group inline-flex items-center gap-4 rounded-full bg-bordeaux py-4 pl-8 pr-4 font-semibold text-creme transition hover:bg-bordeaux-sombre"
+    >
+      Envoyer le message
+      <span aria-hidden="true" class="flex h-9 w-9 items-center justify-center rounded-full bg-creme text-bordeaux transition-transform duration-300 group-hover:translate-x-1">→</span>
     </button>
+    <p id="contact-confirmation" class="hidden font-semibold text-bordeaux" role="status">
+      Message envoyé. <span class="font-normal text-brun/60">(Maquette : rien n'est transmis pour l'instant.)</span>
+    </p>
   </div>
-
-  <p id="contact-confirmation" class="hidden text-sm font-semibold text-bordeaux sm:col-span-2" role="status">
-    Merci, votre message a bien été pris en compte. (Maquette : aucun message n'est réellement envoyé.)
-  </p>
 </form>
 
 <script>
