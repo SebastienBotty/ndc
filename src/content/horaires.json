@@ -1,0 +1,35 @@
+[
+  {
+    "id": "lundi",
+    "jour": "Lundi",
+    "lieu": "Hannut",
+    "creneaux": [
+      { "heure": "18h15", "cours": "Danses solo — Intermédiaires", "niveau": "intermediaire" },
+      { "heure": "19h15", "cours": "Danses solo — Avancés", "niveau": "avance" },
+      { "heure": "20h15", "cours": "Rock, Salsa, Bachata — Débutants", "niveau": "debutant" },
+      { "heure": "21h15", "cours": "Rock, Salsa, Bachata — Avancés", "niveau": "avance" }
+    ]
+  },
+  {
+    "id": "jeudi",
+    "jour": "Jeudi",
+    "lieu": "Hannut",
+    "creneaux": [
+      { "heure": "18h15", "cours": "Danses solo — Débutants", "niveau": "debutant" },
+      { "heure": "19h15", "cours": "Danses de salon — Débutants", "niveau": "debutant" },
+      { "heure": "20h15", "cours": "Danses de salon — Intermédiaires", "niveau": "intermediaire" },
+      { "heure": "21h15", "cours": "Danses de salon — Avancés", "niveau": "avance" }
+    ]
+  },
+  {
+    "id": "vendredi",
+    "jour": "Vendredi",
+    "lieu": "Jandrain",
+    "label": "Entraînement",
+    "creneaux": [
+      { "heure": "19h00", "cours": "Danses solo", "niveau": "tous" },
+      { "heure": "20h00", "cours": "Danses en couple", "niveau": "tous" },
+      { "heure": "21h00", "cours": "Mix", "niveau": "tous" }
+    ]
+  }
+]
