@@ -1,24 +1,292 @@
 @import "tailwindcss";
-@import "@fontsource/fraunces/400.css";
-@import "@fontsource/fraunces/600.css";
-@import "@fontsource/figtree/400.css";
-@import "@fontsource/figtree/600.css";
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
+@import "@fontsource-variable/figtree/index.css";
 
 @theme {
   --color-bordeaux: #7A1F2B;
+  --color-bordeaux-sombre: #5A1520;
   --color-or: #D9A441;
   --color-creme: #FBF5EC;
   --color-brun: #2A1A14;
-  --font-display: "Fraunces", ui-serif, serif;
-  --font-body: "Figtree", ui-sans-serif, sans-serif;
+  --color-nuit: #1C0F14;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-body: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
 }
+
+/* ---------- Base ---------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-creme);
+  color: var(--color-brun);
+  font-family: var(--font-body);
+}
+
+/* Grain papier, en surimpression fixe */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-or);
+  outline-offset: 3px;
+}
+
+/* ---------- Typographie ---------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+}
+
+.display-xl {
+  font-size: clamp(3.4rem, 11vw, 10.5rem);
+}
+
+.display-lg {
+  font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+}
+
+.display-md {
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  line-height: 0.95;
+}
+
+.display em,
+.accent {
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .outline-text {
+    color: currentColor;
+    opacity: 0.35;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Formes ---------- */
+
+.arch {
+  border-radius: 999px 999px 1.25rem 1.25rem;
+  overflow: hidden;
+}
+
+.duotone {
+  position: relative;
+  isolation: isolate;
+}
+
+.duotone img {
+  filter: grayscale(1) contrast(1.1);
+}
+
+.duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-bordeaux);
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+}
+
+/* ---------- Liens ---------- */
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease;
+}
+
+.link-underline:hover,
+.link-underline:focus-visible,
+.link-underline[aria-current="page"] {
+  background-size: 100% 1px;
+}
+
+/* ---------- Bandeau défilant ---------- */
+
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Diagramme de pas ---------- */
+
+.step-foot {
+  opacity: 0;
+  animation: step-in 0.5s ease-out forwards;
+  animation-delay: calc(0.35s + var(--i) * 0.38s);
+}
+
+.step-trail {
+  stroke-dasharray: 4 7;
+}
+
+.step-trail-mask {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: trail-draw 2.6s ease-in-out 0.35s forwards;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes trail-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- Apparitions au scroll ---------- */
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes parallax-shift {
+  from {
+    transform: translateY(-7%) scale(1.15);
+  }
+  to {
+    transform: translateY(7%) scale(1.15);
+  }
+}
+
+@keyframes header-solid {
+  to {
+    background-color: rgb(251 245 236 / 0.94);
+    box-shadow: 0 1px 0 rgb(42 26 20 / 0.08);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+
+    .parallax {
+      animation: parallax-shift linear both;
+      animation-timeline: view();
+    }
+
+    .header-scroll {
+      animation: header-solid linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 140px;
+    }
+  }
+}
+
+/* Secours JS (Firefox, anciens Safari) : voir src/scripts/reveal.ts */
+html.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+html.js-reveal .header-scroll.is-scrolled {
+  background-color: rgb(251 245 236 / 0.94);
+  box-shadow: 0 1px 0 rgb(42 26 20 / 0.08);
+}
+
+/* ---------- Mouvement réduit ---------- */
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none;
   }
 }

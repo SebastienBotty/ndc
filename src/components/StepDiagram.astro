@@ -1,0 +1,53 @@
+---
+// Diagramme du pas de base de la valse (carré), vu du cavalier.
+// 1 gauche avant · 2 droit côté · 3 gauche assemble · 4 droit arrière · 5 gauche côté · 6 droit assemble
+export interface Props {
+  class?: string;
+  tone?: 'bordeaux' | 'or' | 'creme';
+}
+const { class: className = '', tone = 'bordeaux' } = Astro.props;
+
+const pas = [
+  { n: 1, x: 90, y: 70, pied: 'G' },
+  { n: 2, x: 190, y: 70, pied: 'D' },
+  { n: 3, x: 140, y: 70, pied: 'G' },
+  { n: 4, x: 190, y: 190, pied: 'D' },
+  { n: 5, x: 90, y: 190, pied: 'G' },
+  { n: 6, x: 140, y: 190, pied: 'D' },
+];
+const trace = `M 115 235 L ${pas.map((p) => `${p.x} ${p.y}`).join(' L ')}`;
+const couleur = { bordeaux: 'text-bordeaux', or: 'text-or', creme: 'text-creme' }[tone];
+---
+<figure class={`${couleur} ${className}`}>
+  <svg viewBox="0 0 260 260" class="h-full w-full overflow-visible" role="img" aria-labelledby="pas-valse-titre">
+    <title id="pas-valse-titre">Pas de base de la valse : six pas en carré</title>
+    <defs>
+      <g id="empreinte">
+        <ellipse cx="0" cy="-7" rx="10" ry="17" />
+        <ellipse cx="0" cy="17" rx="7.5" ry="8.5" />
+      </g>
+      <mask id="trace-masque">
+        <path d={trace} fill="none" stroke="white" stroke-width="6" class="step-trail-mask" />
+      </mask>
+    </defs>
+
+    <path d={trace} fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="step-trail" mask="url(#trace-masque)" opacity="0.6" />
+
+    {pas.map((p, i) => (
+      <g class="step-foot" style={`--i:${i}; transform-box: fill-box; transform-origin: center;`}>
+        <g transform={`translate(${p.x} ${p.y}) rotate(${p.pied === 'G' ? -8 : 8})`}>
+          <use href="#empreinte" fill="currentColor" opacity="0.9" />
+        </g>
+        <text
+          x={p.x + (p.pied === 'G' ? -24 : 24)}
+          y={p.y + 4}
+          text-anchor="middle"
+          class="display"
+          font-size="18"
+          fill="currentColor"
+        >{p.n}</text>
+      </g>
+    ))}
+  </svg>
+  <figcaption class="eyebrow mt-2 opacity-70">Pas de base · valse</figcaption>
+</figure>

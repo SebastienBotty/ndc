@@ -1,0 +1,20 @@
+---
+export interface Props {
+  items: string[];
+  tone?: 'bordeaux' | 'nuit';
+  label?: string;
+}
+const { items, tone = 'bordeaux', label } = Astro.props;
+const fond = tone === 'bordeaux' ? 'bg-bordeaux text-creme' : 'bg-nuit text-creme';
+const serie = [...items, ...items];
+---
+<section class={`marquee ${fond} py-5 sm:py-7`} aria-label={label ?? items.join(', ')}>
+  <div class="marquee-track" aria-hidden="true">
+    {serie.map((item) => (
+      <span class="display flex items-center whitespace-nowrap px-6 text-[clamp(2rem,5vw,4.5rem)] leading-none">
+        <em>{item}</em>
+        <span class="ml-12 text-[0.5em] text-or">✦</span>
+      </span>
+    ))}
+  </div>
+</section>

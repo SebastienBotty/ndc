@@ -4,40 +4,74 @@ const liens = [
   { href: '/cours', label: 'Nos cours' },
   { href: '/contact', label: 'Contact' },
 ];
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const estActif = (href: string) => currentPath === href;
 ---
-<header class="sticky top-0 z-40 border-b border-brun/10 bg-creme/95 backdrop-blur">
-  <div class="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-    <a href="/" class="font-display text-xl font-semibold text-bordeaux">New Dance Club</a>
+<header class="header-scroll sticky top-0 z-50 transition-colors">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+    <a href="/" class="display text-2xl leading-none text-bordeaux">
+      New <em>Dance</em> Club
+    </a>
 
-    <nav class="hidden items-center gap-6 sm:flex">
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
       {liens.map((lien) => (
         <a
           href={lien.href}
-          class={`text-sm font-semibold ${currentPath === lien.href ? 'text-bordeaux' : 'text-brun/70 hover:text-bordeaux'}`}
+          class="link-underline pb-0.5 text-sm font-semibold text-brun"
+          aria-current={estActif(lien.href) ? 'page' : undefined}
         >
           {lien.label}
         </a>
       ))}
-      <a href="/contact" class="rounded-full bg-bordeaux px-5 py-2 text-sm font-semibold text-creme hover:bg-bordeaux/90">
+      <a
+        href="/contact"
+        class="group inline-flex items-center gap-2 rounded-full bg-bordeaux px-5 py-2.5 text-sm font-semibold text-creme transition hover:bg-bordeaux-sombre"
+      >
         Venir essayer
+        <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
       </a>
     </nav>
 
-    <details class="sm:hidden">
-      <summary class="cursor-pointer list-none rounded-lg border border-brun/20 px-3 py-2 text-sm font-semibold text-brun">
-        Menu
+    <details class="menu-mobile md:hidden">
+      <summary class="relative z-[55] flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-brun/20 text-brun [&::-webkit-details-marker]:hidden">
+        <span class="sr-only">Ouvrir le menu</span>
+        <svg class="icon-open h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 8h16M4 16h16" stroke-linecap="round" />
+        </svg>
+        <svg class="icon-close hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+        </svg>
       </summary>
-      <nav class="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-brun/10 bg-creme px-6 py-4 shadow-md">
+      <nav
+        class="fixed inset-0 z-50 flex flex-col justify-center gap-2 bg-nuit px-8 text-creme"
+        aria-label="Navigation mobile"
+      >
         {liens.map((lien) => (
-          <a href={lien.href} class="py-2 text-sm font-semibold text-brun/80 hover:text-bordeaux">
+          <a href={lien.href} class="display display-lg py-1" aria-current={estActif(lien.href) ? 'page' : undefined}>
             {lien.label}
           </a>
         ))}
-        <a href="/contact" class="mt-2 rounded-full bg-bordeaux px-5 py-2 text-center text-sm font-semibold text-creme">
-          Venir essayer
+        <a href="/contact" class="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-or px-6 py-3 font-semibold text-nuit">
+          Venir essayer →
         </a>
+        <p class="mt-10 text-sm text-creme/60">Hannut · Jandrain</p>
       </nav>
     </details>
   </div>
 </header>
+
+<style>
+  .menu-mobile[open] summary {
+    color: var(--color-creme);
+    border-color: rgb(251 245 236 / 0.3);
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+  }
+  .menu-mobile[open] .icon-open {
+    display: none;
+  }
+  .menu-mobile[open] .icon-close {
+    display: block;
+  }
+</style>
