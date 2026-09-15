@@ -1,12 +1,23 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { creneauSchema } from './lib/schemas';
+
+const lieux = defineCollection({
+  loader: file('src/content/lieux.json'),
+  schema: z.object({
+    nom: z.string(),
+    role: z.enum(['cours', 'entrainement']),
+    adresse: z.string(),
+    lat: z.number(),
+    lon: z.number(),
+  }),
+});
 
 const horaires = defineCollection({
   loader: file('src/content/horaires.json'),
   schema: z.object({
     jour: z.string(),
-    lieu: z.string(),
+    lieu: reference('lieux'),
     label: z.string().optional(),
     creneaux: z.array(creneauSchema),
   }),
@@ -19,6 +30,7 @@ const danses = defineCollection({
     slug: z.string(),
     ordre: z.number(),
     couleur: z.enum(['bordeaux', 'or']).default('bordeaux'),
+    image: z.string(),
     danses: z.array(
       z.object({
         nom: z.string(),
@@ -47,4 +59,4 @@ const sponsors = defineCollection({
   }),
 });
 
-export const collections = { horaires, danses, evenements, sponsors };
+export const collections = { lieux, horaires, danses, evenements, sponsors };

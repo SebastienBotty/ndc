@@ -3,6 +3,7 @@ titre: "Danses standard"
 slug: "danses-standard"
 ordre: 3
 couleur: "bordeaux"
+image: "salon"
 danses:
   - nom: "Quickstep"
     description: "Version rapide du fox-trot des années 1920, ponctuée de sautillés inspirés du charleston."

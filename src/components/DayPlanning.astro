@@ -13,7 +13,7 @@ const { jour: nomJour, lieu, label, creneaux } = jour.data;
     <h3 class="font-display text-xl font-semibold text-bordeaux">{nomJour}</h3>
     {label && <span class="text-sm font-semibold text-or">{label}</span>}
   </div>
-  <p class="text-sm text-brun/70">{lieu}</p>
+  <p class="text-sm text-brun/70">{lieu.id}</p>
   <ul class="mt-4 space-y-3">
     {creneaux.map((c) => (
       <li class="flex flex-wrap items-center justify-between gap-2 border-t border-brun/10 pt-3 first:border-0 first:pt-0">

@@ -3,6 +3,7 @@ titre: "Solo & line dance"
 slug: "solo-line-dance"
 ordre: 1
 couleur: "bordeaux"
+image: "solo"
 danses:
   - nom: "Line dance"
     description: "Chorégraphies de groupe dansées en rangs, sans partenaire, sur des musiques variées : reggae, twist, mambo, bachata, sirtaki ou tubes du moment."

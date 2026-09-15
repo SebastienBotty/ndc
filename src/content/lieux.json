@@ -1,0 +1,18 @@
+[
+  {
+    "id": "hannut",
+    "nom": "Hannut",
+    "role": "cours",
+    "adresse": "Av. Paul Brien 4, 4280 Hannut",
+    "lat": 50.671,
+    "lon": 5.0712
+  },
+  {
+    "id": "jandrain",
+    "nom": "Jandrain",
+    "role": "entrainement",
+    "adresse": "Rue des Tanneurs 4, 1350 Jandrain",
+    "lat": 50.6836,
+    "lon": 4.9989
+  }
+]

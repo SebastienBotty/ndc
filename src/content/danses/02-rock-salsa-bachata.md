@@ -3,6 +3,7 @@ titre: "Rock, Salsa, Bachata"
 slug: "rock-salsa-bachata"
 ordre: 2
 couleur: "or"
+image: "jupes"
 danses:
   - nom: "Rock"
     description: "Danse née aux États-Unis : le cavalier guide sa partenaire dans des figures rythmées, sur une musique à 4 ou 6 temps."

@@ -11,7 +11,7 @@ const { jour: nomJour, lieu, label, creneaux } = jour.data;
   <p class="font-display text-lg font-semibold text-bordeaux">
     {nomJour}{label ? ` — ${label}` : ''}
   </p>
-  <p class="text-sm text-brun/70">{lieu}</p>
+  <p class="text-sm text-brun/70">{lieu.id}</p>
   <ul class="mt-4 space-y-1 text-sm text-brun">
     {creneaux.map((c) => (
       <li>{c.heure} — {c.cours}</li>

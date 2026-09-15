@@ -2,7 +2,7 @@
   {
     "id": "lundi",
     "jour": "Lundi",
-    "lieu": "Hannut",
+    "lieu": "hannut",
     "creneaux": [
       { "heure": "18h15", "cours": "Danses solo — Intermédiaires", "niveau": "intermediaire" },
       { "heure": "19h15", "cours": "Danses solo — Avancés", "niveau": "avance" },
@@ -13,7 +13,7 @@
   {
     "id": "jeudi",
     "jour": "Jeudi",
-    "lieu": "Hannut",
+    "lieu": "hannut",
     "creneaux": [
       { "heure": "18h15", "cours": "Danses solo — Débutants", "niveau": "debutant" },
       { "heure": "19h15", "cours": "Danses de salon — Débutants", "niveau": "debutant" },
@@ -24,7 +24,7 @@
   {
     "id": "vendredi",
     "jour": "Vendredi",
-    "lieu": "Jandrain",
+    "lieu": "jandrain",
     "label": "Entraînement",
     "creneaux": [
       { "heure": "19h00", "cours": "Danses solo", "niveau": "tous" },

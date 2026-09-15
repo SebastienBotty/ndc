@@ -3,6 +3,7 @@ titre: "Danses latines"
 slug: "danses-latines"
 ordre: 4
 couleur: "or"
+image: "flamenco"
 danses:
   - nom: "Cha-cha-cha"
     description: "Née à Cuba dans les années 1950, entre rumba et mambo, avec ses célèbres pas chassés."
