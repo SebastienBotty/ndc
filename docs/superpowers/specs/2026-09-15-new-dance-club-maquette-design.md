@@ -1,11 +1,11 @@
-# New Dance Club — Maquette de refonte
+# Cadence Danse Club — Maquette de refonte
 
 Date : 2026-09-15
 Statut : validé en brainstorming, en attente de relecture
 
 ## Contexte
 
-New Dance Club est un club de danse (Hannut / Jandrain, Belgique). Son site actuel (https://www.new-dance-club.be/) tourne sur Wix. Il est daté, sa page d'accueil est pauvre (une citation, un événement, un mur de 24 logos de sponsors) et le contenu utile (horaires, danses, calendrier) est éclaté en sous-pages.
+Cadence Danse Club est un club de danse (Verchamps / Roimont, Belgique). Son site actuel (https://www.cadence-danse-club.be/) tourne sur Wix. Il est daté, sa page d'accueil est pauvre (une citation, un événement, un mur de 24 logos de sponsors) et le contenu utile (horaires, danses, calendrier) est éclaté en sous-pages.
 
 Cette maquette sert à **démarcher le club**. Elle n'est pas jetable : si le club signe, un CMS sera branché dessus pour que le comité modifie lui-même photos, vidéos, horaires et événements.
 
@@ -53,11 +53,11 @@ Photos : reprises du site actuel du club (contenu du club, démo privée), compl
 ### Commun
 
 - **Header sticky** : logo, liens Accueil / Nos cours / Contact, bouton « Venir essayer » vers `/contact`. Menu burger sur mobile.
-- **Footer** : adresse (Rue des Tanneurs 4, 1350 Jandrain), téléphone (0495/32.66.47), email (ndc1350@gmail.com), lien Facebook (https://www.facebook.com/profile.php?id=100057211669508).
+- **Footer** : adresse (Rue des Tanneurs 4, 1457 Roimont), téléphone (0470/11.22.33), email (contact@example.com), lien Facebook (https://facebook.com).
 
 ### Accueil (`/`)
 
-1. Hero : grande photo, titre du type « On danse ensemble, à Hannut et Jandrain », boutons « Voir les horaires » (`/cours`) et « Nous contacter » (`/contact`).
+1. Hero : grande photo, titre du type « On danse ensemble, à Verchamps et Roimont », boutons « Voir les horaires » (`/cours`) et « Nous contacter » (`/contact`).
 2. Repères : 3 soirs par semaine · tous niveaux · 4 familles de danses.
 3. Nos danses : 4 cartes (Solo & line dance, Rock/Salsa/Bachata, Danses standard, Danses latines), chacune liée à sa section de `/cours`.
 4. Aperçu de la semaine : lundi, jeudi, vendredi en 3 colonnes (lieu + créneaux), généré depuis `horaires.json`.
@@ -76,26 +76,26 @@ Photos : reprises du site actuel du club (contenu du club, démo privée), compl
 ### Contact (`/contact`)
 
 1. Cartes cliquables : téléphone (`tel:`), email (`mailto:`), Facebook.
-2. Carte OpenStreetMap intégrée (iframe, sans clé API) centrée sur Jandrain.
+2. Carte OpenStreetMap intégrée (iframe, sans clé API) centrée sur Roimont.
 3. Formulaire prénom / nom / email / message, avec validation HTML5. En maquette, la soumission n'envoie rien et affiche un message de confirmation. Le formulaire porte déjà les attributs Netlify Forms pour la mise en production.
 
 ## Contenu
 
 ### Horaires (depuis le site actuel)
 
-**Lundi — Hannut**
+**Lundi — Verchamps**
 - 18h15 Danses solo P1 — Intermédiaires
 - 19h15 Danses solo P2 — Avancés
 - 20h15 Rock, Salsa, Bachata — Débutants
 - 21h15 Rock, Salsa, Bachata — Avancés
 
-**Jeudi — Hannut**
+**Jeudi — Verchamps**
 - 18h15 Danses solo — Débutants
 - 19h15 Danses de salon — Débutants
 - 20h15 Danses de salon — Intermédiaires P1
 - 21h15 Danses de salon — Avancés P2
 
-**Vendredi — Jandrain (entraînement)**
+**Vendredi — Roimont (entraînement)**
 - 19h Danses solo
 - 20h Danses en couple
 - 21h–22h Mix
@@ -109,9 +109,9 @@ Photos : reprises du site actuel du club (contenu du club, démo privée), compl
 
 ### Placeholders visibles (« à confirmer »)
 
-- Adresse de la salle de Hannut.
+- Adresse de la salle de Verchamps.
 - Tarifs : affichés « Tarifs : contactez-nous ».
-- Calendrier : l'événement connu (Petit marché de Hannut, 6 septembre 2026) et 2 à 3 exemples marqués comme tels.
+- Calendrier : l'événement connu (Petit marché de Verchamps, 6 septembre 2026) et 2 à 3 exemples marqués comme tels.
 
 ## Architecture
 

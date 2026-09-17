@@ -15,13 +15,14 @@ const evenements = await getCollection('evenements');
 const prochainEvenement = getNextEvent(evenements.map((e) => ({ id: e.id, ...e.data })));
 ---
 <Base
-  title="New Dance Club — Cours de danse à Hannut et Jandrain"
-  description="Cours de danse pour tous niveaux à Hannut et Jandrain : rock, salsa, bachata, danses de salon et danses latines."
+  title="Cadence Danse Club — Cours de danse à Verchamps et Roimont"
+  description="Cours de danse pour tous niveaux à Verchamps et Roimont : rock, salsa, bachata, danses de salon et danses latines."
   preloadImage="/images/tango-couple-lg.webp"
 >
   <HeroHome />
   <Marquee
     items={['Rock', 'Salsa', 'Bachata', 'Tango', 'Valse', 'Cha-cha', 'Rumba', 'Line dance']}
+    eyebrow="Ce qu'on y danse"
     label="Danses enseignées : rock, salsa, bachata, tango, valse, cha-cha, rumba, line dance"
   />
   <DanceIndex />

@@ -1,20 +1,26 @@
 ---
 export interface Props {
   items: string[];
-  tone?: 'bordeaux' | 'nuit';
+  eyebrow?: string;
   label?: string;
 }
-const { items, tone = 'bordeaux', label } = Astro.props;
-const fond = tone === 'bordeaux' ? 'bg-bordeaux text-creme' : 'bg-nuit text-creme';
+const { items, eyebrow, label } = Astro.props;
 const serie = [...items, ...items];
 ---
-<section class={`marquee ${fond} py-5 sm:py-7`} aria-label={label ?? items.join(', ')}>
-  <div class="marquee-track" aria-hidden="true">
-    {serie.map((item) => (
-      <span class="display flex items-center whitespace-nowrap px-6 text-[clamp(2rem,5vw,4.5rem)] leading-none">
-        <em>{item}</em>
-        <span class="ml-12 text-[0.5em] text-or">✦</span>
-      </span>
-    ))}
+<section class="border-y border-brun/15 py-14" aria-label={label ?? items.join(', ')}>
+  {eyebrow && (
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <p class="eyebrow text-bordeaux">{eyebrow}</p>
+    </div>
+  )}
+  <div class="marquee mt-8">
+    <div class="marquee-track" aria-hidden="true">
+      {serie.map((item) => (
+        <span class="display flex items-center whitespace-nowrap px-8 text-[clamp(2rem,5vw,4rem)] leading-none text-bordeaux">
+          <em>{item}</em>
+          <span class="ml-12 text-[0.5em] text-or">✦</span>
+        </span>
+      ))}
+    </div>
   </div>
 </section>

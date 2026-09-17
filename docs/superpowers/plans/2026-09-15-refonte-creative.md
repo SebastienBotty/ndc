@@ -43,10 +43,10 @@ import { osmEmbedUrl } from './carte';
 
 describe('osmEmbedUrl', () => {
   it('centre la bbox et le marqueur sur les coordonnées', () => {
-    const url = new URL(osmEmbedUrl(50.671, 5.0712, 0.01));
+    const url = new URL(osmEmbedUrl(50.55, 4.85, 0.01));
     expect(url.origin + url.pathname).toBe('https://www.openstreetmap.org/export/embed.html');
     expect(url.searchParams.get('bbox')).toBe('5.0612,50.661,5.0812,50.681');
-    expect(url.searchParams.get('marker')).toBe('50.671,5.0712');
+    expect(url.searchParams.get('marker')).toBe('50.55,4.85');
     expect(url.searchParams.get('layer')).toBe('mapnik');
   });
 
@@ -82,14 +82,14 @@ Run: `npm run test` — Expected: 10 tests verts.
 
 ```json
 [
-  { "id": "hannut", "nom": "Hannut", "role": "cours", "adresse": "Av. Paul Brien 4, 4280 Hannut", "lat": 50.671, "lon": 5.0712 },
-  { "id": "jandrain", "nom": "Jandrain", "role": "entrainement", "adresse": "Rue des Tanneurs 4, 1350 Jandrain", "lat": 50.6836, "lon": 4.9989 }
+  { "id": "verchamps", "nom": "Verchamps", "role": "cours", "adresse": "Avenue des Tilleuls 4, 4370 Verchamps", "lat": 50.55, "lon": 4.85 },
+  { "id": "roimont", "nom": "Roimont", "role": "entrainement", "adresse": "Rue des Tanneurs 4, 1457 Roimont", "lat": 50.6, "lon": 4.7 }
 ]
 ```
 
 `src/content.config.ts` : ajouter la collection `lieux` (schéma ci-dessus via `z.enum(['cours', 'entrainement'])`), ajouter `image: z.string()` au schéma `danses`, l'exporter dans `collections`.
 
-`horaires.json` : `"lieu": "Hannut"` → `"lieu": "hannut"` (lundi, jeudi), `"lieu": "Jandrain"` → `"lieu": "jandrain"` (vendredi).
+`horaires.json` : `"lieu": "Verchamps"` → `"lieu": "verchamps"` (lundi, jeudi), `"lieu": "Roimont"` → `"lieu": "roimont"` (vendredi).
 
 Frontmatter des danses : `image: "solo"`, `"jupes"`, `"salon"`, `"flamenco"` respectivement.
 
@@ -156,7 +156,7 @@ Expected: 10 tests verts, 0 erreur, build OK.
 - Delete: `src/components/DayPlanning.astro`
 
 - [ ] **Step 1 :** Composants et page selon la spec.
-- [ ] **Step 2 : Vérification** — check + build ; 4 ancres `id="{slug}"` ; `grep -o "Av. Paul Brien 4" dist/cours/index.html | wc -l` ≥ 1 ; `grep -o "(exemple)\|>exemple<" dist/cours/index.html | wc -l` = 2 ; les 4 photos de familles référencées.
+- [ ] **Step 2 : Vérification** — check + build ; 4 ancres `id="{slug}"` ; `grep -o "Avenue des Tilleuls 4" dist/cours/index.html | wc -l` ≥ 1 ; `grep -o "(exemple)\|>exemple<" dist/cours/index.html | wc -l` = 2 ; les 4 photos de familles référencées.
 - [ ] **Step 3 : Commit** — `feat: redesign cours page`
 
 ---

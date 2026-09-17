@@ -1,4 +1,4 @@
-# Résumé pour le club — New Dance Club
+# Résumé pour le club — Cadence Danse Club
 
 ## Ce que c'est
 
@@ -10,7 +10,7 @@ facilement plus tard, sans toucher au code.
 
 - Le site est hébergé sur Netlify, gratuit pour ce volume de trafic.
 - Aucun serveur à gérer, aucune mise à jour de sécurité à faire (site statique).
-- Nom de domaine : à connecter (le domaine actuel new-dance-club.be peut être
+- Nom de domaine : à connecter (le domaine actuel cadence-danse-club.be peut être
   redirigé vers le nouveau site).
 
 ## Comment le comité modifiera le contenu
@@ -30,7 +30,7 @@ facilement plus tard, sans toucher au code.
   utilisées à titre provisoire pour montrer le rendu. Elles ne représentent
   pas les membres du club et doivent être remplacées avant la mise en ligne.
 - La page d'accueil contient trois emplacements marqués « Photo du club ici »
-  (soirée dansante, stage, marché de Hannut) : ce sont les places réservées
+  (soirée dansante, stage, marché de Verchamps) : ce sont les places réservées
   aux vraies photos du club.
 - Les albums du site actuel contiennent surtout des photos de soirées et de
   buffets, peu adaptées à une page d'accueil. Proposition : organiser une

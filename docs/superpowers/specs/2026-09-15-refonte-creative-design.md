@@ -1,8 +1,8 @@
-# New Dance Club — Refonte créative de la maquette
+# Cadence Danse Club — Refonte créative de la maquette
 
 Date : 2026-09-15
 Statut : validé en brainstorming
-Remplace la partie « Identité visuelle » et « Pages » de `2026-09-15-new-dance-club-maquette-design.md`. Le reste de cette spec (stack, contenu, hors périmètre) reste valable.
+Remplace la partie « Identité visuelle » et « Pages » de `2026-09-15-cadence-danse-club-maquette-design.md`. Le reste de cette spec (stack, contenu, hors périmètre) reste valable.
 
 ## Pourquoi
 
@@ -50,7 +50,7 @@ Stratégie hybride validée :
 
 - Nouveau champ `image` (nom de base, ex. `"jupes"`) dans le frontmatter des danses.
 - Nouvelle collection `lieux` (`src/content/lieux.json`) : `id`, `nom`, `role` (`cours` | `entrainement`), `adresse`, `lat`, `lon`.
-- `horaires.json` : le champ texte `lieu` est remplacé par `lieu`, référence à l'id d'un lieu (`hannut` | `jandrain`).
+- `horaires.json` : le champ texte `lieu` est remplacé par `lieu`, référence à l'id d'un lieu (`verchamps` | `roimont`).
 - `src/lib/carte.ts` : fonction pure `osmEmbedUrl(lat, lon, delta?)` qui construit l'URL d'embed OpenStreetMap. Testée unitairement.
 
 ## Pages
@@ -58,7 +58,7 @@ Stratégie hybride validée :
 ### Commun
 
 - **Header** : logo en Fraunces italique, liens soulignés or au survol, fond qui devient opaque au scroll (scroll-driven CSS). Menu mobile plein écran avec liens géants (`<details>`).
-- **Footer** : « New Dance Club » en typo géante sur toute la largeur, coordonnées dessous.
+- **Footer** : « Cadence Danse Club » en typo géante sur toute la largeur, coordonnées dessous.
 
 ### Accueil
 

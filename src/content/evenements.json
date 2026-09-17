@@ -1,17 +1,17 @@
 [
   {
-    "id": "marche-hannut-2026",
+    "id": "marche-verchamps-2026",
     "date": "2026-09-06",
-    "titre": "Petit marché de Hannut",
-    "lieu": "Hannut",
-    "description": "Le club tient un stand au petit marché de Hannut. Venez nous rencontrer !",
+    "titre": "Petit marché de Verchamps",
+    "lieu": "Verchamps",
+    "description": "Le club tient un stand au petit marché de Verchamps. Venez nous rencontrer !",
     "exemple": false
   },
   {
     "id": "exemple-stage-1",
     "date": "2026-11-14",
     "titre": "Stage danses latines",
-    "lieu": "Salle de Jandrain",
+    "lieu": "Salle de Roimont",
     "description": "Exemple de mise en page — date et contenu à confirmer avec le club.",
     "exemple": true
   },

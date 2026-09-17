@@ -1,14 +1,14 @@
-# New Dance Club — Maquette : Implementation Plan
+# Cadence Danse Club — Maquette : Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Construire une maquette de site (Accueil, Nos cours, Contact) pour New Dance Club, prête à démarcher le club, avec un contenu déjà séparé du code pour brancher un CMS plus tard.
+**Goal:** Construire une maquette de site (Accueil, Nos cours, Contact) pour Cadence Danse Club, prête à démarcher le club, avec un contenu déjà séparé du code pour brancher un CMS plus tard.
 
 **Architecture:** Site statique Astro 5 + Tailwind CSS v4. Le contenu (horaires, danses, événements, sponsors) vit dans des content collections Astro validées par zod dans `src/content.config.ts`. Les pages assemblent des composants Astro qui consomment ces collections. Deux fonctions pures (`src/lib/niveaux.ts`, `src/lib/evenements.ts`) portent la seule logique métier testable unitairement ; le reste est vérifié par build + inspection du HTML généré.
 
 **Tech Stack:** Astro 5, `@tailwindcss/vite` (Tailwind v4), Fontsource (Fraunces, Figtree), Vitest (avec `getViteConfig` pour résoudre `astro:content` dans les tests), déploiement Netlify (site statique + Netlify Forms).
 
-**Spec:** `docs/superpowers/specs/2026-09-15-new-dance-club-maquette-design.md`
+**Spec:** `docs/superpowers/specs/2026-09-15-cadence-danse-club-maquette-design.md`
 
 ## Global Constraints
 
@@ -19,7 +19,7 @@
 - Tout le contenu éditable (horaires, danses, événements, sponsors) vit dans `src/content`, jamais en dur dans une page ou un composant.
 - Un niveau ou une donnée invalide dans le contenu fait échouer `astro build` avec un message explicite (validation zod).
 - Node ≥ 20 (installé : v24.19.0), npm ≥ 10 (installé : 12.0.2).
-- Données manquantes affichées comme placeholders visibles, jamais inventées : tarifs (« Tarifs : contactez-nous »), adresse de la salle de Hannut, sponsors (« Partenaire à ajouter »), 2 événements du calendrier marqués « (exemple) ».
+- Données manquantes affichées comme placeholders visibles, jamais inventées : tarifs (« Tarifs : contactez-nous »), adresse de la salle de Verchamps, sponsors (« Partenaire à ajouter »), 2 événements du calendrier marqués « (exemple) ».
 - Aucune vraie photo du club : les albums du site actuel ont été inspectés (buffets, déguisements de fêtes, photos hors-sujet ou mal cadrées) et ne contiennent aucune image exploitable pour une page d'accueil. La maquette utilise des fonds dégradés et motifs SVG décoratifs à la place. Le club pourra fournir de vraies photos plus tard.
 - Formulaire de contact : dans la maquette, la soumission est interceptée en JavaScript et n'envoie rien réellement (confirmation visuelle uniquement). Les attributs Netlify Forms sont déjà en place pour activer l'envoi réel en une étape le jour où le site passe en production.
 
@@ -49,7 +49,7 @@
 
 ```json
 {
-  "name": "new-dance-club",
+  "name": "cadence-danse-club",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -82,7 +82,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://new-dance-club.netlify.app',
+  site: 'https://cadence-danse-club.netlify.app',
   vite: {
     plugins: [tailwindcss()],
   },
@@ -169,7 +169,7 @@ const currentPath = Astro.url.pathname;
 ---
 <header class="sticky top-0 z-40 border-b border-brun/10 bg-creme/95 backdrop-blur">
   <div class="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-    <a href="/" class="font-display text-xl font-semibold text-bordeaux">New Dance Club</a>
+    <a href="/" class="font-display text-xl font-semibold text-bordeaux">Cadence Danse Club</a>
 
     <nav class="hidden items-center gap-6 sm:flex">
       {liens.map((lien) => (
@@ -213,20 +213,20 @@ const annee = new Date().getFullYear();
 <footer class="border-t border-brun/10 bg-creme px-6 py-10 text-sm text-brun/70">
   <div class="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
     <div>
-      <p class="font-display text-lg font-semibold text-bordeaux">New Dance Club</p>
-      <p class="mt-2">Rue des Tanneurs 4, 1350 Jandrain</p>
-      <p><a href="tel:+32495326647" class="hover:text-bordeaux">0495/32.66.47</a></p>
-      <p><a href="mailto:ndc1350@gmail.com" class="hover:text-bordeaux">ndc1350@gmail.com</a></p>
+      <p class="font-display text-lg font-semibold text-bordeaux">Cadence Danse Club</p>
+      <p class="mt-2">Rue des Tanneurs 4, 1457 Roimont</p>
+      <p><a href="tel:+32470112233" class="hover:text-bordeaux">0470/11.22.33</a></p>
+      <p><a href="mailto:contact@example.com" class="hover:text-bordeaux">contact@example.com</a></p>
     </div>
     <div class="flex flex-col gap-2">
       <a href="/" class="hover:text-bordeaux">Accueil</a>
       <a href="/cours" class="hover:text-bordeaux">Nos cours</a>
       <a href="/contact" class="hover:text-bordeaux">Contact</a>
-      <a href="https://www.facebook.com/profile.php?id=100057211669508" class="hover:text-bordeaux">Facebook</a>
+      <a href="https://facebook.com" class="hover:text-bordeaux">Facebook</a>
     </div>
   </div>
   <p class="mx-auto mt-8 max-w-6xl border-t border-brun/10 pt-6 text-xs text-brun/50">
-    © {annee} New Dance Club — Maquette de démonstration.
+    © {annee} Cadence Danse Club — Maquette de démonstration.
   </p>
 </footer>
 ```
@@ -249,15 +249,15 @@ const url = new URL(Astro.url.pathname, Astro.site);
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'DanceSchool',
-  name: 'New Dance Club',
+  name: 'Cadence Danse Club',
   url: Astro.site?.toString(),
-  telephone: '+32495326647',
-  email: 'ndc1350@gmail.com',
+  telephone: '+32470112233',
+  email: 'contact@example.com',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Rue des Tanneurs 4',
     postalCode: '1350',
-    addressLocality: 'Jandrain',
+    addressLocality: 'Roimont',
     addressCountry: 'BE',
   },
 };
@@ -296,8 +296,8 @@ const structuredData = {
 import Base from '../layouts/Base.astro';
 ---
 <Base
-  title="New Dance Club — Cours de danse à Hannut et Jandrain"
-  description="Cours de danse pour tous niveaux à Hannut et Jandrain."
+  title="Cadence Danse Club — Cours de danse à Verchamps et Roimont"
+  description="Cours de danse pour tous niveaux à Verchamps et Roimont."
 >
   <h1 class="mx-auto max-w-4xl px-6 py-16 font-display text-3xl text-brun">Accueil</h1>
 </Base>
@@ -309,7 +309,7 @@ import Base from '../layouts/Base.astro';
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Nos cours — New Dance Club" description="Horaires et danses du New Dance Club.">
+<Base title="Nos cours — Cadence Danse Club" description="Horaires et danses du Cadence Danse Club.">
   <h1 class="mx-auto max-w-4xl px-6 py-16 font-display text-3xl text-brun">Nos cours</h1>
 </Base>
 ```
@@ -320,7 +320,7 @@ import Base from '../layouts/Base.astro';
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Contact — New Dance Club" description="Contactez le New Dance Club à Jandrain.">
+<Base title="Contact — Cadence Danse Club" description="Contactez le Cadence Danse Club à Roimont.">
   <h1 class="mx-auto max-w-4xl px-6 py-16 font-display text-3xl text-brun">Contact</h1>
 </Base>
 ```
@@ -330,7 +330,7 @@ import Base from '../layouts/Base.astro';
 Run: `npm run build`
 Expected: build réussi, dossier `dist/` créé.
 
-Run: `grep -l "New Dance Club" dist/index.html dist/cours/index.html dist/contact/index.html`
+Run: `grep -l "Cadence Danse Club" dist/index.html dist/cours/index.html dist/contact/index.html`
 Expected: les 3 fichiers listés (logo du header présent partout).
 
 Run: `grep -c "Rue des Tanneurs" dist/index.html`
@@ -470,7 +470,7 @@ Expected: PASS — 2 tests verts.
   {
     "id": "lundi",
     "jour": "Lundi",
-    "lieu": "Hannut",
+    "lieu": "Verchamps",
     "creneaux": [
       { "heure": "18h15", "cours": "Danses solo — Intermédiaires", "niveau": "intermediaire" },
       { "heure": "19h15", "cours": "Danses solo — Avancés", "niveau": "avance" },
@@ -481,7 +481,7 @@ Expected: PASS — 2 tests verts.
   {
     "id": "jeudi",
     "jour": "Jeudi",
-    "lieu": "Hannut",
+    "lieu": "Verchamps",
     "creneaux": [
       { "heure": "18h15", "cours": "Danses solo — Débutants", "niveau": "debutant" },
       { "heure": "19h15", "cours": "Danses de salon — Débutants", "niveau": "debutant" },
@@ -492,7 +492,7 @@ Expected: PASS — 2 tests verts.
   {
     "id": "vendredi",
     "jour": "Vendredi",
-    "lieu": "Jandrain",
+    "lieu": "Roimont",
     "label": "Entraînement",
     "creneaux": [
       { "heure": "19h00", "cours": "Danses solo", "niveau": "tous" },
@@ -596,18 +596,18 @@ Note pour l'exécutant : les descriptions ci-dessus corrigent deux erreurs du si
 ```json
 [
   {
-    "id": "marche-hannut-2026",
+    "id": "marche-verchamps-2026",
     "date": "2026-09-06",
-    "titre": "Petit marché de Hannut",
-    "lieu": "Hannut",
-    "description": "Le club tient un stand au petit marché de Hannut. Venez nous rencontrer !",
+    "titre": "Petit marché de Verchamps",
+    "lieu": "Verchamps",
+    "description": "Le club tient un stand au petit marché de Verchamps. Venez nous rencontrer !",
     "exemple": false
   },
   {
     "id": "exemple-stage-1",
     "date": "2026-11-14",
     "titre": "Stage danses latines (exemple)",
-    "lieu": "Salle de Jandrain",
+    "lieu": "Salle de Roimont",
     "description": "Exemple de mise en page — date et contenu à confirmer avec le club.",
     "exemple": true
   },
@@ -622,7 +622,7 @@ Note pour l'exécutant : les descriptions ci-dessus corrigent deux erreurs du si
 ]
 ```
 
-Note : l'événement « Petit marché de Hannut » est daté du 6 septembre 2026, déjà passé à la date de rédaction (15 septembre 2026). C'est volontaire : il sert à vérifier que le filtrage des événements passés fonctionne (voir Task 3). Le bloc « Prochain événement » de l'accueil affichera donc le stage de novembre.
+Note : l'événement « Petit marché de Verchamps » est daté du 6 septembre 2026, déjà passé à la date de rédaction (15 septembre 2026). C'est volontaire : il sert à vérifier que le filtrage des événements passés fonctionne (voir Task 3). Le bloc « Prochain événement » de l'accueil affichera donc le stage de novembre.
 
 - [ ] **Step 8 : Écrire `src/content/sponsors.json`**
 
@@ -735,9 +735,9 @@ import { describe, expect, it } from 'vitest';
 import { getUpcomingEvents, getNextEvent, type Evenement } from './evenements';
 
 const evenements: Evenement[] = [
-  { id: 'passe', date: new Date('2026-01-01'), titre: 'Événement passé', lieu: 'Hannut', description: '' },
-  { id: 'futur-proche', date: new Date('2026-11-14'), titre: 'Événement proche', lieu: 'Jandrain', description: '' },
-  { id: 'futur-lointain', date: new Date('2026-12-12'), titre: 'Événement lointain', lieu: 'Jandrain', description: '' },
+  { id: 'passe', date: new Date('2026-01-01'), titre: 'Événement passé', lieu: 'Verchamps', description: '' },
+  { id: 'futur-proche', date: new Date('2026-11-14'), titre: 'Événement proche', lieu: 'Roimont', description: '' },
+  { id: 'futur-lointain', date: new Date('2026-12-12'), titre: 'Événement lointain', lieu: 'Roimont', description: '' },
 ];
 const maintenant = new Date('2026-09-15');
 
@@ -912,11 +912,11 @@ import { getCollection } from 'astro:content';
 const danses = (await getCollection('danses')).sort((a, b) => a.data.ordre - b.data.ordre);
 ---
 <Base
-  title="New Dance Club — Cours de danse à Hannut et Jandrain"
-  description="Cours de danse pour tous niveaux à Hannut et Jandrain : rock, salsa, bachata, danses de salon et danses latines."
+  title="Cadence Danse Club — Cours de danse à Verchamps et Roimont"
+  description="Cours de danse pour tous niveaux à Verchamps et Roimont : rock, salsa, bachata, danses de salon et danses latines."
 >
   <Hero
-    titre="On danse ensemble, à Hannut et Jandrain"
+    titre="On danse ensemble, à Verchamps et Roimont"
     sousTitre="Rock, salsa, bachata, danses de salon et danses latines : un club convivial pour tous les niveaux, débutants compris."
   />
   <StatsBar />
@@ -1085,11 +1085,11 @@ const evenements = await getCollection('evenements');
 const prochainEvenement = getNextEvent(evenements.map((e) => ({ id: e.id, ...e.data })));
 ---
 <Base
-  title="New Dance Club — Cours de danse à Hannut et Jandrain"
-  description="Cours de danse pour tous niveaux à Hannut et Jandrain : rock, salsa, bachata, danses de salon et danses latines."
+  title="Cadence Danse Club — Cours de danse à Verchamps et Roimont"
+  description="Cours de danse pour tous niveaux à Verchamps et Roimont : rock, salsa, bachata, danses de salon et danses latines."
 >
   <Hero
-    titre="On danse ensemble, à Hannut et Jandrain"
+    titre="On danse ensemble, à Verchamps et Roimont"
     sousTitre="Rock, salsa, bachata, danses de salon et danses latines : un club convivial pour tous les niveaux, débutants compris."
   />
   <StatsBar />
@@ -1127,9 +1127,9 @@ Run: `grep -c "Lundi" dist/index.html && grep -c "Jeudi" dist/index.html && grep
 Expected: `1` pour chacune des 3 commandes.
 
 Run: `grep -c "Stage danses latines" dist/index.html`
-Expected: `1` — c'est le prochain événement à venir (le marché de Hannut, daté du 6 septembre 2026, est déjà passé à la date de génération et ne doit donc pas apparaître).
+Expected: `1` — c'est le prochain événement à venir (le marché de Verchamps, daté du 6 septembre 2026, est déjà passé à la date de génération et ne doit donc pas apparaître).
 
-Run: `grep -c "Petit marché de Hannut" dist/index.html`
+Run: `grep -c "Petit marché de Verchamps" dist/index.html`
 Expected: `0`.
 
 Run: `grep -c "Dansez comme si personne" dist/index.html && grep -c "Partenaire à ajouter" dist/index.html`
@@ -1234,12 +1234,12 @@ const evenements = (await getCollection('evenements')).sort(
 const dateFormatter = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <Base
-  title="Nos cours — New Dance Club"
-  description="Horaires, danses enseignées et calendrier du New Dance Club à Hannut et Jandrain."
+  title="Nos cours — Cadence Danse Club"
+  description="Horaires, danses enseignées et calendrier du Cadence Danse Club à Verchamps et Roimont."
 >
   <section class="mx-auto max-w-4xl px-6 py-16 text-center">
     <h1 class="font-display text-4xl font-semibold text-brun">Nos cours</h1>
-    <p class="mt-4 text-brun/80">Trois soirs par semaine, à Hannut et à Jandrain. Tarifs : contactez-nous.</p>
+    <p class="mt-4 text-brun/80">Trois soirs par semaine, à Verchamps et à Roimont. Tarifs : contactez-nous.</p>
   </section>
 
   <section class="mx-auto max-w-5xl px-6 pb-16">
@@ -1437,7 +1437,7 @@ Ce formulaire porte déjà les attributs Netlify Forms (`data-netlify`, `netlify
 
 - [ ] **Step 3 : Modifier `src/pages/contact.astro`**
 
-Coordonnées GPS approximatives pour Jandrain (Rue des Tanneurs 4, 1350 Jandrain), à confirmer avec le club.
+Coordonnées GPS approximatives pour Roimont (Rue des Tanneurs 4, 1457 Roimont), à confirmer avec le club.
 
 ```astro
 ---
@@ -1446,8 +1446,8 @@ import ContactCard from '../components/ContactCard.astro';
 import ContactForm from '../components/ContactForm.astro';
 ---
 <Base
-  title="Contact — New Dance Club"
-  description="Contactez le New Dance Club à Jandrain (Hannut) : téléphone, email, Facebook ou formulaire en ligne."
+  title="Contact — Cadence Danse Club"
+  description="Contactez le Cadence Danse Club à Roimont (Verchamps) : téléphone, email, Facebook ou formulaire en ligne."
 >
   <section class="mx-auto max-w-4xl px-6 py-16 text-center">
     <h1 class="font-display text-4xl font-semibold text-brun">Contact</h1>
@@ -1455,24 +1455,24 @@ import ContactForm from '../components/ContactForm.astro';
   </section>
 
   <section class="mx-auto grid max-w-4xl grid-cols-1 gap-4 px-6 pb-12 sm:grid-cols-3">
-    <ContactCard icone="telephone" titre="Téléphone" valeur="0495/32.66.47" href="tel:+32495326647" />
-    <ContactCard icone="email" titre="Email" valeur="ndc1350@gmail.com" href="mailto:ndc1350@gmail.com" />
+    <ContactCard icone="telephone" titre="Téléphone" valeur="0470/11.22.33" href="tel:+32470112233" />
+    <ContactCard icone="email" titre="Email" valeur="contact@example.com" href="mailto:contact@example.com" />
     <ContactCard
       icone="facebook"
       titre="Facebook"
-      valeur="New Dance Club"
-      href="https://www.facebook.com/profile.php?id=100057211669508"
+      valeur="Cadence Danse Club"
+      href="https://facebook.com"
     />
   </section>
 
   <section class="mx-auto max-w-4xl px-6 pb-12">
     <iframe
-      title="Localisation du New Dance Club à Jandrain"
+      title="Localisation du Cadence Danse Club à Roimont"
       class="h-80 w-full rounded-2xl border border-brun/10"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=4.9889%2C50.6786%2C5.0089%2C50.6886&layer=mapnik&marker=50.6836%2C4.9989"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=4.69%2C50.59%2C4.71%2C50.61&layer=mapnik&marker=50.6%2C4.7"
       loading="lazy"
     ></iframe>
-    <p class="mt-2 text-sm text-brun/60">Rue des Tanneurs 4, 1350 Jandrain (coordonnées approximatives, à confirmer).</p>
+    <p class="mt-2 text-sm text-brun/60">Rue des Tanneurs 4, 1457 Roimont (coordonnées approximatives, à confirmer).</p>
   </section>
 
   <section class="mx-auto max-w-2xl px-6 pb-16">
@@ -1489,10 +1489,10 @@ import ContactForm from '../components/ContactForm.astro';
 Run: `npm run build`
 Expected: build réussi.
 
-Run: `grep -c 'href="tel:+32495326647"' dist/contact/index.html`
+Run: `grep -c 'href="tel:+32470112233"' dist/contact/index.html`
 Expected: `1`.
 
-Run: `grep -c 'href="mailto:ndc1350@gmail.com"' dist/contact/index.html`
+Run: `grep -c 'href="mailto:contact@example.com"' dist/contact/index.html`
 Expected: `1`.
 
 Run: `grep -c 'name="contact"' dist/contact/index.html && grep -c 'data-netlify="true"' dist/contact/index.html && grep -c 'name="bot-field"' dist/contact/index.html`
@@ -1561,7 +1561,7 @@ Allow: /
 Ce fichier est un document destiné au client (le comité du club) : prose normale, sans jargon technique inutile.
 
 ```markdown
-# Résumé pour le club — New Dance Club
+# Résumé pour le club — Cadence Danse Club
 
 ## Ce que c'est
 
@@ -1573,7 +1573,7 @@ facilement plus tard, sans toucher au code.
 
 - Le site est hébergé sur Netlify, gratuit pour ce volume de trafic.
 - Aucun serveur à gérer, aucune mise à jour de sécurité à faire (site statique).
-- Nom de domaine : à connecter (le domaine actuel new-dance-club.be peut être
+- Nom de domaine : à connecter (le domaine actuel cadence-danse-club.be peut être
   redirigé vers le nouveau site).
 
 ## Comment le comité modifiera le contenu
@@ -1589,7 +1589,7 @@ facilement plus tard, sans toucher au code.
 
 ## Informations à confirmer avec le club
 
-- Adresse exacte de la salle de Hannut.
+- Adresse exacte de la salle de Verchamps.
 - Tarifs des cours.
 - Photos et vidéos actuelles : les albums du site actuel ne contiennent pas
   de photo de danse exploitable pour la page d'accueil (essentiellement des

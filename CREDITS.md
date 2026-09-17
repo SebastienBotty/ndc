@@ -1,6 +1,6 @@
 # Crédits photos
 
-Photos provisoires de la maquette, sous [licence Unsplash](https://unsplash.com/license) (usage gratuit, y compris commercial, sans attribution obligatoire). Elles ne représentent pas les membres du New Dance Club et doivent être remplacées par des photos du club avant la mise en ligne.
+Photos provisoires de la maquette, sous [licence Unsplash](https://unsplash.com/license) (usage gratuit, y compris commercial, sans attribution obligatoire). Elles ne représentent pas les membres de Cadence Danse Club et doivent être remplacées par des photos du club avant la mise en ligne.
 
 | Fichier (`public/images/`) | Photographe | Source |
 |---|---|---|

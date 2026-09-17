@@ -2,7 +2,7 @@
   {
     "id": "lundi",
     "jour": "Lundi",
-    "lieu": "hannut",
+    "lieu": "verchamps",
     "creneaux": [
       { "heure": "18h15", "cours": "Danses solo", "niveau": "intermediaire" },
       { "heure": "19h15", "cours": "Danses solo", "niveau": "avance" },
@@ -13,7 +13,7 @@
   {
     "id": "jeudi",
     "jour": "Jeudi",
-    "lieu": "hannut",
+    "lieu": "verchamps",
     "creneaux": [
       { "heure": "18h15", "cours": "Danses solo", "niveau": "debutant" },
       { "heure": "19h15", "cours": "Danses de salon", "niveau": "debutant" },
@@ -24,7 +24,7 @@
   {
     "id": "vendredi",
     "jour": "Vendredi",
-    "lieu": "jandrain",
+    "lieu": "roimont",
     "label": "Entraînement",
     "creneaux": [
       { "heure": "19h00", "cours": "Danses solo", "niveau": "tous" },
